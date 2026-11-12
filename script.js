@@ -22,16 +22,68 @@ const dataTanaman = [
   ["Kuping Gajah","daun","Daun lebar berbentuk hati.","Tanaman tropis dengan daun besar dan tulang daun jelas.","Terang tidak langsung","Teratur secukupnya","Teras teduh","Gunakan media kaya bahan organik."],
   ["Pilea","daun","Daun bulat kecil yang menarik.","Tanaman hias berdaun bundar yang cocok untuk meja.","Terang tidak langsung","Saat media mulai kering","Dalam ruangan","Putar pot agar tumbuh merata."],
 
-  ["Mawar","bunga","Kelopak berlapis dengan warna beragam.","Tanaman berbunga dengan banyak pilihan warna.","Matahari beberapa jam","Teratur","Luar ruangan","Pangkas bunga yang sudah layu."],
-  ["Anggrek","bunga","Bunga anggun dengan bentuk khas.","Tanaman berbunga dengan bentuk dan warna beragam.","Terang tidak langsung","Sesuai kondisi media","Area teduh","Gunakan media khusus anggrek."],
-  ["Lili Perdamaian","bunga","Bunga putih dengan daun hijau mengilap.","Tanaman dengan bunga putih dan daun hijau rimbun.","Cahaya teduh","Saat media mulai kering","Dalam ruangan","Hindari genangan air."],
-  ["Kembang Sepatu","bunga","Bunga besar dengan warna mencolok.","Tanaman berbunga tropis dengan mahkota lebar.","Matahari langsung","Teratur","Luar ruangan","Berikan cahaya matahari cukup."],
-  ["Bougenville","bunga","Bunga dengan warna cerah dan menarik.","Tanaman hias dengan seludang bunga berwarna cerah.","Matahari langsung","Secukupnya","Luar ruangan","Hindari penyiraman berlebihan."],
-  ["Melati","bunga","Bunga putih mungil dengan aroma harum.","Tanaman berbunga yang dikenal dengan aromanya.","Matahari cukup","Teratur","Luar ruangan","Pangkas ranting yang terlalu panjang."],
-  ["Geranium","bunga","Bunga berkelompok dengan warna beragam.","Tanaman hias berbunga yang cocok ditanam dalam pot.","Matahari cukup","Saat media mengering","Teras atau taman","Buang bunga yang sudah layu."],
-  ["Begonia","bunga","Daun dekoratif dan bunga yang cantik.","Tanaman dengan banyak variasi bentuk daun dan bunga.","Terang tidak langsung","Saat media mengering","Dalam ruangan","Hindari penyiraman berlebihan."],
-  ["Krisan","bunga","Bunga berlapis dengan warna cerah.","Tanaman berbunga yang populer sebagai penghias taman.","Matahari pagi","Secukupnya","Teras atau taman","Buang bunga yang sudah layu."],
-  ["Kamboja","bunga","Bunga berkelopak tebal dan khas.","Tanaman hias berbunga yang banyak dijumpai di daerah tropis.","Matahari langsung","Setelah media kering","Luar ruangan","Gunakan media yang memiliki drainase baik."],
+const dataBunga = [
+  {
+    nama: "Bunga Mawar",
+    kategori: "Bunga",
+    deskripsi: "Bunga mawar memiliki kelopak yang indah dan aroma yang khas.",
+    image: "https://loremflickr.com/600/400/rose?lock=101"
+  },
+  {
+    nama: "Bunga Melati",
+    kategori: "Bunga",
+    deskripsi: "Melati merupakan bunga putih kecil yang memiliki aroma harum.",
+    image: "https://loremflickr.com/600/400/jasmine?lock=102"
+  },
+  {
+    nama: "Bunga Anggrek",
+    kategori: "Bunga",
+    deskripsi: "Anggrek memiliki bentuk kelopak yang unik dan beragam warna.",
+    image: "https://loremflickr.com/600/400/orchid?lock=103"
+  },
+  {
+    nama: "Bunga Matahari",
+    kategori: "Bunga",
+    deskripsi: "Bunga matahari memiliki kelopak kuning cerah dan bagian tengah berwarna cokelat.",
+    image: "https://loremflickr.com/600/400/sunflower?lock=104"
+  },
+  {
+    nama: "Bunga Tulip",
+    kategori: "Bunga",
+    deskripsi: "Tulip dikenal dengan bentuk kelopaknya yang menyerupai cangkir.",
+    image: "https://loremflickr.com/600/400/tulip?lock=105"
+  },
+  {
+    nama: "Bunga Lavender",
+    kategori: "Bunga",
+    deskripsi: "Lavender memiliki warna ungu dan aroma yang menenangkan.",
+    image: "https://loremflickr.com/600/400/lavender?lock=106"
+  },
+  {
+    nama: "Bunga Kembang Sepatu",
+    kategori: "Bunga",
+    deskripsi: "Kembang sepatu memiliki kelopak lebar dengan warna yang mencolok.",
+    image: "https://loremflickr.com/600/400/hibiscus?lock=107"
+  },
+  {
+    nama: "Bunga Bougenville",
+    kategori: "Bunga",
+    deskripsi: "Bougenville dikenal dengan warna bunganya yang cerah dan menarik.",
+    image: "https://loremflickr.com/600/400/bougainvillea?lock=108"
+  },
+  {
+    nama: "Bunga Teratai",
+    kategori: "Bunga",
+    deskripsi: "Teratai merupakan tanaman air dengan bunga yang indah.",
+    image: "https://loremflickr.com/600/400/lotus-flower?lock=109"
+  },
+  {
+    nama: "Bunga Krisan",
+    kategori: "Bunga",
+    deskripsi: "Krisan memiliki banyak lapisan kelopak dan pilihan warna.",
+    image: "https://loremflickr.com/600/400/chrysanthemum?lock=110"
+  }
+];
 
   ["Echeveria","sukulen","Daun tebal tersusun menyerupai bunga.","Sukulen dengan daun tebal berbentuk roset.","Terang","Setelah media kering","Area terang","Gunakan media khusus sukulen."],
   ["Kaktus","sukulen","Tanaman unik yang menyimpan air.","Kelompok tanaman sukulen dengan bentuk beragam.","Matahari cukup","Setelah media kering","Area terang","Hindari genangan air."],
