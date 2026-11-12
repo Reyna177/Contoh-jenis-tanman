@@ -4,144 +4,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruang Hijau — Ensiklopedia Tanaman Hias</title>
+  <title>Ruang Hijau - Tanaman Hias</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo" href="#home"><span>✿</span> ruang<strong>hijau</strong></a>
-    <button class="menu-toggle" id="menuToggle">☰</button>
-    <nav class="nav" id="navMenu">
-      <a href="#home">Beranda</a>
-      <a href="#catalog">Katalog</a>
-      <a href="#care">Panduan</a>
-      <a href="#about">Tentang</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow">ENSIKLOPEDIA TANAMAN HIAS</p>
-        <h1>Temukan tanaman,<br><em>hidupkan suasana.</em></h1>
-        <p class="hero-text">Kenali berbagai jenis tanaman hias, pelajari karakteristiknya, dan temukan cara merawatnya dengan mudah.</p>
-        <a class="button button-primary" href="#catalog">Jelajahi katalog →</a>
-        <div class="hero-stats">
-          <div><strong>9+</strong><span>Jenis tanaman</span></div>
-          <div><strong>3</strong><span>Kategori utama</span></div>
-          <div><strong>1</strong><span>Tempat belajar</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1100&q=85" alt="Tanaman hias">
-        <div class="floating-note">
-          <span>✦</span>
-          <div><b>Grow with care</b><small>Mulai dari satu tanaman.</small></div>
-        </div>
-      </div>
-    </section>
+<header class="site-header">
+  <a class="logo" href="#home"><span>✿</span> ruang<strong>hijau</strong></a>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <nav class="nav" id="navMenu">
+    <a href="#home">Beranda</a>
+    <a href="#catalog">Katalog</a>
+    <a href="#care">Panduan</a>
+    <a href="#about">Tentang</a>
+  </nav>
+</header>
 
-    <section class="intro section" id="about">
+<main>
+  <section class="hero" id="home">
+    <div class="hero-copy">
+      <p class="eyebrow">ENSIKLOPEDIA TANAMAN HIAS</p>
+      <h1>Temukan tanaman,<br><em>hidupkan suasana.</em></h1>
+      <p class="hero-text">Kenali berbagai jenis tanaman hias, pelajari karakteristiknya, dan temukan cara merawatnya dengan mudah.</p>
+      <a class="button button-primary" href="#catalog">Jelajahi katalog →</a>
+      <div class="hero-stats">
+        <div><strong>30</strong><span>Jenis tanaman</span></div>
+        <div><strong>3</strong><span>Kategori utama</span></div>
+        <div><strong>1</strong><span>Tempat belajar</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1100&q=85" alt="Tanaman hias">
+    </div>
+  </section>
+
+  <section class="intro section" id="about">
+    <div>
+      <p class="eyebrow">TENTANG TANAMAN HIAS</p>
+      <h2>Keindahan kecil yang<br>membuat ruang lebih hidup.</h2>
+    </div>
+    <p>Tanaman hias merupakan tanaman yang dipelihara karena keindahan bentuk, warna daun, bunga, atau aromanya. Tanaman ini dapat ditempatkan di dalam maupun luar ruangan sesuai kebutuhan tumbuhnya.</p>
+  </section>
+
+  <section class="catalog section" id="catalog">
+    <div class="section-heading">
       <div>
-        <p class="eyebrow">TENTANG TANAMAN HIAS</p>
-        <h2>Keindahan kecil yang<br>membuat ruang lebih hidup.</h2>
+        <p class="eyebrow">JELAJAHI KOLEKSI</p>
+        <h2>Katalog tanaman</h2>
+        <p class="subtext">Temukan tanaman favoritmu dan tekan “Lihat detail”.</p>
       </div>
-      <p>Tanaman hias merupakan tanaman yang dipelihara karena keindahan bentuk, warna daun, bunga, atau aromanya. Tanaman ini dapat ditempatkan di dalam maupun luar ruangan sesuai kebutuhan tumbuhnya.</p>
-    </section>
+      <label class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Cari nama tanaman...">
+      </label>
+    </div>
 
-    <section class="catalog section" id="catalog">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">JELAJAHI KOLEKSI</p>
-          <h2>Katalog tanaman</h2>
-          <p class="subtext">Cari tanaman favoritmu dan tekan “Lihat detail”.</p>
+    <div class="toolbar">
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="semua">Semua</button>
+        <button class="filter" data-filter="daun">Tanaman daun</button>
+        <button class="filter" data-filter="bunga">Tanaman bunga</button>
+        <button class="filter" data-filter="sukulen">Sukulen</button>
+      </div>
+      <span class="result-count" id="resultCount">30 tanaman</span>
+    </div>
+
+    <div class="plant-grid" id="plantGrid"></div>
+
+    <div class="no-results" id="noResults" hidden>
+      <h3>Tanaman tidak ditemukan</h3>
+      <p>Coba kata kunci atau kategori lainnya.</p>
+      <button class="button button-outline" id="resetSearch">Atur ulang pencarian</button>
+    </div>
+  </section>
+
+  <section class="care-section" id="care">
+    <div class="care-layout section">
+      <div class="care-image">
+        <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85" alt="Merawat tanaman">
+      </div>
+      <div class="care-content">
+        <p class="eyebrow">PANDUAN DASAR</p>
+        <h2>Rawat tanaman<br>dengan tepat.</h2>
+        <p class="subtext">Setiap tanaman memiliki kebutuhan yang berbeda. Mulailah dengan memperhatikan tiga hal berikut.</p>
+
+        <div class="care-item">
+          <span>01</span>
+          <div><b>Cahaya matahari</b><p>Sesuaikan tempat tanaman dengan kebutuhan cahaya.</p></div>
         </div>
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Cari nama tanaman...">
-        </label>
-      </div>
-
-      <div class="toolbar">
-        <div class="filters" id="filters">
-          <button class="filter active" data-filter="semua">Semua</button>
-          <button class="filter" data-filter="daun">Tanaman daun</button>
-          <button class="filter" data-filter="bunga">Tanaman bunga</button>
-          <button class="filter" data-filter="sukulen">Sukulen</button>
+        <div class="care-item">
+          <span>02</span>
+          <div><b>Penyiraman</b><p>Periksa kelembapan media tanam sebelum menyiram.</p></div>
         </div>
-        <span class="result-count" id="resultCount">9 tanaman</span>
-      </div>
-
-      <div class="plant-grid" id="plantGrid"></div>
-      <div class="no-results" id="noResults" hidden>
-        <h3>Tanaman tidak ditemukan</h3>
-        <p>Coba kata kunci atau kategori lainnya.</p>
-        <button class="button button-outline" id="resetSearch">Atur ulang pencarian</button>
-      </div>
-    </section>
-
-    <section class="care-section" id="care">
-      <div class="care-layout section">
-        <div class="care-image">
-          <img src="https://images.unsplash.com/photo-1616690248055-9b9b7c3f6f0f?auto=format&fit=crop&w=900&q=85" alt="Merawat tanaman">
-        </div>
-        <div class="care-content">
-          <p class="eyebrow">PANDUAN DASAR</p>
-          <h2>Rawat tanaman<br>dengan tepat.</h2>
-          <p class="subtext">Setiap tanaman memiliki kebutuhan yang berbeda. Mulailah dengan memperhatikan tiga hal berikut.</p>
-
-          <div class="care-item">
-            <span>01</span>
-            <div><b>Cahaya matahari</b><p>Sesuaikan tempat tanaman dengan kebutuhan cahaya.</p></div>
-          </div>
-          <div class="care-item">
-            <span>02</span>
-            <div><b>Penyiraman</b><p>Periksa kelembapan media tanam sebelum menyiram.</p></div>
-          </div>
-          <div class="care-item">
-            <span>03</span>
-            <div><b>Media dan kebersihan</b><p>Gunakan media tanam sesuai jenis tanaman.</p></div>
-          </div>
+        <div class="care-item">
+          <span>03</span>
+          <div><b>Media dan kebersihan</b><p>Gunakan media tanam sesuai jenis tanaman.</p></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="newsletter section">
-      <div>
-        <p class="eyebrow">MULAI DARI SEKARANG</p>
-        <h2>Satu tanaman, suasana baru.</h2>
-        <p class="subtext">Pilih tanaman yang kamu sukai dan pelajari cara merawatnya.</p>
+  <section class="newsletter section">
+    <div>
+      <p class="eyebrow">MULAI DARI SEKARANG</p>
+      <h2>Satu tanaman, suasana baru.</h2>
+      <p class="subtext">Pilih tanaman yang kamu sukai dan pelajari cara merawatnya.</p>
+    </div>
+    <a href="#catalog" class="button button-primary">Lihat koleksi →</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <a class="logo" href="#home">✿ ruang<strong>hijau</strong></a>
+  <p>Tempat mengenal dan merawat keindahan tanaman hias.</p>
+  <small>© 2026 Ruang Hijau.</small>
+</footer>
+
+<div class="modal" id="plantModal" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose">×</button>
+    <img id="modalImage" src="" alt="">
+    <div class="modal-body">
+      <span class="plant-category" id="modalCategory"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="detail-facts">
+        <div><span>Cahaya</span><b id="modalLight"></b></div>
+        <div><span>Penyiraman</span><b id="modalWater"></b></div>
+        <div><span>Penempatan</span><b id="modalPlace"></b></div>
       </div>
-      <a href="#catalog" class="button button-primary">Lihat koleksi →</a>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <a class="logo" href="#home">✿ ruang<strong>hijau</strong></a>
-    <p>Tempat mengenal dan merawat keindahan tanaman hias.</p>
-    <small>© 2026 Ruang Hijau.</small>
-  </footer>
-
-  <div class="modal" id="plantModal" aria-hidden="true">
-    <div class="modal-panel" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modalClose">×</button>
-      <img id="modalImage" src="" alt="">
-      <div class="modal-body">
-        <span class="plant-category" id="modalCategory"></span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDescription"></p>
-        <div class="detail-facts">
-          <div><span>Cahaya</span><b id="modalLight"></b></div>
-          <div><span>Penyiraman</span><b id="modalWater"></b></div>
-          <div><span>Penempatan</span><b id="modalPlace"></b></div>
-        </div>
-        <div class="care-tip"><b>Tips perawatan</b><p id="modalTip"></p></div>
+      <div class="care-tip">
+        <b>Tips perawatan</b>
+        <p id="modalTip"></p>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
