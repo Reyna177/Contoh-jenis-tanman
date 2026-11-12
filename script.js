@@ -199,4 +199,130 @@ navMenu.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", () => navMenu.classList.remove("open"));
 });
 
+plants.push(
+  {
+    id:"calathea", name:"Calathea", category:"daun", label:"TANAMAN DAUN",
+    image:"https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=800&q=85",
+    short:"Daun bermotif unik dengan perpaduan warna hijau.",
+    description:"Calathea merupakan tanaman hias daun yang terkenal dengan motif dan pola daunnya.",
+    light:"Cahaya tidak langsung", water:"Jaga media tetap lembap",
+    place:"Dalam ruangan teduh", tip:"Hindari sinar matahari langsung dan jangan biarkan media terlalu kering."
+  },
+  {
+    id:"philodendron", name:"Philodendron", category:"daun", label:"TANAMAN DAUN",
+    image:"https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=85",
+    short:"Tanaman tropis dengan bentuk daun yang beragam.",
+    description:"Philodendron memiliki banyak jenis dengan bentuk daun yang unik dan menarik.",
+    light:"Cahaya tidak langsung", water:"Saat permukaan media mengering",
+    place:"Dalam ruangan terang", tip:"Gunakan media yang gembur dan memiliki drainase baik."
+  },
+  {
+    id:"palm", name:"Palem Kuning", category:"daun", label:"TANAMAN DAUN",
+    image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=800&q=85",
+    short:"Daun ramping yang memberi kesan tropis.",
+    description:"Palem kuning merupakan tanaman hias dengan daun panjang dan batang berwarna kekuningan.",
+    light:"Terang tidak langsung", water:"Saat media mulai mengering",
+    place:"Dalam atau luar ruangan", tip:"Sediakan ruang tumbuh yang cukup dan hindari genangan air."
+  },
+  {
+    id:"ficus", name:"Ficus Elastica", category:"daun", label:"TANAMAN DAUN",
+    image:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=85",
+    short:"Daun lebar, tebal, dan mengilap.",
+    description:"Ficus elastica atau karet kebo merupakan tanaman hias dengan daun tebal dan mengilap.",
+    light:"Cahaya terang tidak langsung", water:"Saat media mulai kering",
+    place:"Dalam ruangan terang", tip:"Bersihkan permukaan daun secara berkala agar tetap bersih."
+  },
+  {
+    id:"spider", name:"Lili Paris", category:"daun", label:"TANAMAN DAUN",
+    image:"https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=800&q=85",
+    short:"Daun panjang dengan garis hijau dan putih.",
+    description:"Lili paris memiliki daun ramping yang tumbuh menjuntai dan cocok dijadikan tanaman gantung.",
+    light:"Cahaya tidak langsung", water:"Secara teratur secukupnya",
+    place:"Dalam ruangan terang", tip:"Pangkas daun yang mengering dan gunakan pot dengan drainase."
+  },
+  {
+    id:"hibiscus", name:"Kembang Sepatu", category:"bunga", label:"TANAMAN BUNGA",
+    image:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=85",
+    short:"Bunga besar dengan warna yang mencolok.",
+    description:"Kembang sepatu merupakan tanaman berbunga tropis dengan mahkota bunga yang indah.",
+    light:"Matahari langsung", water:"Teratur, jangan sampai tergenang",
+    place:"Luar ruangan", tip:"Letakkan di tempat yang mendapat sinar matahari cukup."
+  },
+  {
+    id:"bougainvillea", name:"Bougenville", category:"bunga", label:"TANAMAN BUNGA",
+    image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=800&q=85",
+    short:"Tanaman berbunga dengan warna cerah dan menarik.",
+    description:"Bougenville dikenal dengan bagian pelindung bunga berwarna cerah seperti merah muda dan ungu.",
+    light:"Matahari langsung", water:"Secukupnya",
+    place:"Luar ruangan", tip:"Berikan cahaya matahari yang cukup agar tumbuh optimal."
+  },
+  {
+    id:"jasmine", name:"Melati", category:"bunga", label:"TANAMAN BUNGA",
+    image:"https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=800&q=85",
+    short:"Bunga putih mungil dengan aroma harum.",
+    description:"Melati merupakan tanaman berbunga yang dikenal karena warna putih dan aromanya.",
+    light:"Cahaya matahari cukup", water:"Teratur secukupnya",
+    place:"Luar ruangan", tip:"Pangkas ranting yang terlalu panjang agar bentuk tanaman tetap rapi."
+  },
+  {
+    id:"geranium", name:"Geranium", category:"bunga", label:"TANAMAN BUNGA",
+    image:"https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=85",
+    short:"Bunga berkelompok dengan warna yang beragam.",
+    description:"Geranium merupakan tanaman hias berbunga yang sering ditanam dalam pot.",
+    light:"Cahaya matahari cukup", water:"Saat media mulai mengering",
+    place:"Teras atau taman", tip:"Buang bunga yang sudah layu agar tanaman tetap terawat."
+  },
+  {
+    id:"begonia", name:"Begonia", category:"bunga", label:"TANAMAN BUNGA",
+    image:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=85",
+    short:"Tanaman dengan daun dekoratif dan bunga cantik.",
+    description:"Begonia memiliki banyak varietas dengan bentuk daun dan bunga yang menarik.",
+    light:"Cahaya tidak langsung", water:"Saat permukaan media mengering",
+    place:"Dalam atau luar ruangan teduh", tip:"Hindari menyiram terlalu banyak dan pastikan sirkulasi udara baik."
+  },
+  {
+    id:"haworthia", name:"Haworthia", category:"sukulen", label:"SUKULEN",
+    image:"https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=85",
+    short:"Sukulen kecil dengan bentuk daun geometris.",
+    description:"Haworthia adalah sukulen berukuran kecil yang memiliki susunan daun khas.",
+    light:"Terang tidak langsung", water:"Setelah media kering",
+    place:"Dalam ruangan terang", tip:"Gunakan pot kecil berlubang dengan media khusus sukulen."
+  },
+  {
+    id:"aloe", name:"Lidah Buaya", category:"sukulen", label:"SUKULEN",
+    image:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=85",
+    short:"Daun tebal memanjang dengan bagian dalam berisi gel.",
+    description:"Lidah buaya merupakan tanaman sukulen dengan daun berdaging dan tepi bergerigi.",
+    light:"Terang hingga matahari pagi", water:"Saat media benar-benar kering",
+    place:"Teras atau area terang", tip:"Hindari genangan air di sekitar akar."
+  },
+  {
+    id:"sedum", name:"Sedum", category:"sukulen", label:"SUKULEN",
+    image:"https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=85",
+    short:"Sukulen dengan daun kecil yang tumbuh rapat.",
+    description:"Sedum merupakan kelompok sukulen dengan bentuk daun dan pola pertumbuhan yang beragam.",
+    light:"Cahaya terang", water:"Setelah media kering",
+    place:"Area terang", tip:"Pilih media berpori agar air tidak mengendap."
+  },
+  {
+    id:"jade", name:"Jade Plant", category:"sukulen", label:"SUKULEN",
+    image:"https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=85",
+    short:"Daun bulat tebal dengan batang yang kokoh.",
+    description:"Jade plant atau tanaman giok merupakan sukulen yang dapat tumbuh menyerupai semak kecil.",
+    light:"Cahaya terang", water:"Saat media mengering",
+    place:"Dekat jendela terang", tip:"Putar pot sesekali agar pertumbuhannya lebih merata."
+  },
+  {
+    id:"kalanchoe", name:"Kalanchoe", category:"sukulen", label:"SUKULEN",
+    image:"https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=800&q=85",
+    short:"Sukulen berbunga dengan warna yang cerah.",
+    description:"Kalanchoe merupakan tanaman sukulen yang memiliki bunga kecil berkelompok.",
+    light:"Cahaya terang", water:"Saat media mulai kering",
+    place:"Dalam ruangan terang", tip:"Hindari penyiraman berlebihan dan sediakan drainase yang baik."
+  }
+);
+
+renderPlants();
+
+
 renderPlants();
