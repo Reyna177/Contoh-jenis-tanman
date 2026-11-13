@@ -1,148 +1,451 @@
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruang Hijau - Tanaman Hias</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-<header class="site-header">
-  <a class="logo" href="#home"><span>✿</span> ruang<strong>hijau</strong></a>
-  <button class="menu-toggle" id="menuToggle">☰</button>
-  <nav class="nav" id="navMenu">
-    <a href="#home">Beranda</a>
-    <a href="#catalog">Katalog</a>
-    <a href="#care">Panduan</a>
-    <a href="#about">Tentang</a>
-  </nav>
-</header>
+html {
+  scroll-behavior: smooth;
+}
 
-<main>
-  <section class="hero" id="home">
-    <div class="hero-copy">
-      <p class="eyebrow">ENSIKLOPEDIA TANAMAN HIAS</p>
-      <h1>Temukan tanaman,<br><em>hidupkan suasana.</em></h1>
-      <p class="hero-text">Kenali berbagai jenis tanaman hias, pelajari karakteristiknya, dan temukan cara merawatnya dengan mudah.</p>
-      <a class="button button-primary" href="#catalog">Jelajahi katalog →</a>
-      <div class="hero-stats">
-        <div><strong>30</strong><span>Jenis tanaman</span></div>
-        <div><strong>3</strong><span>Kategori utama</span></div>
-        <div><strong>1</strong><span>Tempat belajar</span></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1100&q=85" alt="Tanaman hias">
-    </div>
-  </section>
+body {
+  font-family: Arial, sans-serif;
+  color: #34483a;
+  background: #ffffff;
+  line-height: 1.6;
+}
 
-  <section class="intro section" id="about">
-    <div>
-      <p class="eyebrow">TENTANG TANAMAN HIAS</p>
-      <h2>Keindahan kecil yang<br>membuat ruang lebih hidup.</h2>
-    </div>
-    <p>Tanaman hias merupakan tanaman yang dipelihara karena keindahan bentuk, warna daun, bunga, atau aromanya. Tanaman ini dapat ditempatkan di dalam maupun luar ruangan sesuai kebutuhan tumbuhnya.</p>
-  </section>
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+}
 
-  <section class="catalog section" id="catalog">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">JELAJAHI KOLEKSI</p>
-        <h2>Katalog tanaman</h2>
-        <p class="subtext">Temukan tanaman favoritmu dan tekan “Lihat detail”.</p>
-      </div>
-      <label class="search-box">
-        <span>⌕</span>
-        <input id="searchInput" type="search" placeholder="Cari nama tanaman...">
-      </label>
-    </div>
+/* NAVBAR */
+.header {
+  background: #ffffff;
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
 
-    <div class="toolbar">
-      <div class="filters" id="filters">
-        <button class="filter active" data-filter="semua">Semua</button>
-        <button class="filter" data-filter="daun">Tanaman daun</button>
-        <button class="filter" data-filter="bunga">Tanaman bunga</button>
-        <button class="filter" data-filter="sukulen">Sukulen</button>
-      </div>
-      <span class="result-count" id="resultCount">30 tanaman</span>
-    </div>
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    <div class="plant-grid" id="plantGrid"></div>
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #315b40;
+  text-decoration: none;
+}
 
-    <div class="no-results" id="noResults" hidden>
-      <h3>Tanaman tidak ditemukan</h3>
-      <p>Coba kata kunci atau kategori lainnya.</p>
-      <button class="button button-outline" id="resetSearch">Atur ulang pencarian</button>
-    </div>
-  </section>
+.logo span {
+  color: #8cae83;
+}
 
-  <section class="care-section" id="care">
-    <div class="care-layout section">
-      <div class="care-image">
-        <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85" alt="Merawat tanaman">
-      </div>
-      <div class="care-content">
-        <p class="eyebrow">PANDUAN DASAR</p>
-        <h2>Rawat tanaman<br>dengan tepat.</h2>
-        <p class="subtext">Setiap tanaman memiliki kebutuhan yang berbeda. Mulailah dengan memperhatikan tiga hal berikut.</p>
+nav {
+  display: flex;
+  gap: 30px;
+}
 
-        <div class="care-item">
-          <span>01</span>
-          <div><b>Cahaya matahari</b><p>Sesuaikan tempat tanaman dengan kebutuhan cahaya.</p></div>
-        </div>
-        <div class="care-item">
-          <span>02</span>
-          <div><b>Penyiraman</b><p>Periksa kelembapan media tanam sebelum menyiram.</p></div>
-        </div>
-        <div class="care-item">
-          <span>03</span>
-          <div><b>Media dan kebersihan</b><p>Gunakan media tanam sesuai jenis tanaman.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
+nav a {
+  color: #405746;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
 
-  <section class="newsletter section">
-    <div>
-      <p class="eyebrow">MULAI DARI SEKARANG</p>
-      <h2>Satu tanaman, suasana baru.</h2>
-      <p class="subtext">Pilih tanaman yang kamu sukai dan pelajari cara merawatnya.</p>
-    </div>
-    <a href="#catalog" class="button button-primary">Lihat koleksi →</a>
-  </section>
-</main>
+nav a:hover {
+  color: #82a879;
+}
 
-<footer class="footer">
-  <a class="logo" href="#home">✿ ruang<strong>hijau</strong></a>
-  <p>Tempat mengenal dan merawat keindahan tanaman hias.</p>
-  <small>© 2026 Ruang Hijau.</small>
-</footer>
+.menu-toggle {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
+}
 
-<div class="modal" id="plantModal" aria-hidden="true">
-  <div class="modal-panel">
-    <button class="modal-close" id="modalClose">×</button>
-    <img id="modalImage" src="" alt="">
-    <div class="modal-body">
-      <span class="plant-category" id="modalCategory"></span>
-      <h2 id="modalTitle"></h2>
-      <p id="modalDescription"></p>
-      <div class="detail-facts">
-        <div><span>Cahaya</span><b id="modalLight"></b></div>
-        <div><span>Penyiraman</span><b id="modalWater"></b></div>
-        <div><span>Penempatan</span><b id="modalPlace"></b></div>
-      </div>
-      <div class="care-tip">
-        <b>Tips perawatan</b>
-        <p id="modalTip"></p>
-      </div>
-    </div>
-  </div>
-</div>
+/* HERO */
+.hero {
+  background: #edf4eb;
+  padding: 75px 0;
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.eyebrow {
+  color: #7d9c72;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.2;
+  color: #31543a;
+  margin: 15px 0;
+}
+
+.hero p {
+  color: #68796a;
+  margin-bottom: 28px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #527c58;
+  color: white;
+  text-decoration: none;
+  padding: 13px 25px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #365f40;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* ABOUT */
+.about {
+  text-align: center;
+  padding: 75px 0;
+}
+
+.about h2,
+.section-heading h2 {
+  font-size: 32px;
+  color: #31543a;
+  margin: 10px 0;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  color: #748174;
+}
+
+/* TANAMAN */
+.plants-section {
+  padding: 75px 0;
+  background: #f7faf6;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading p {
+  color: #7c897d;
+}
+
+.search-box {
+  max-width: 500px;
+  margin: 0 auto 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #dce6d9;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-box input:focus {
+  border-color: #729b70;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: 1px solid #d7e4d3;
+  background: white;
+  color: #527052;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #527c58;
+  color: white;
+  border-color: #527c58;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.plant-card {
+  background: white;
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  transition: transform 0.25s;
+}
+
+.plant-card:hover {
+  transform: translateY(-5px);
+}
+
+.plant-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.plant-info {
+  padding: 20px;
+}
+
+.plant-category {
+  display: inline-block;
+  background: #edf4eb;
+  color: #527c58;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.plant-info h3 {
+  color: #34563b;
+  margin: 10px 0 6px;
+  font-size: 20px;
+}
+
+.plant-info p {
+  color: #7b897c;
+  font-size: 14px;
+  min-height: 65px;
+}
+
+.detail-button {
+  background: #527c58;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 17px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.detail-button:hover {
+  background: #365f40;
+}
+
+.empty-result {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #718272;
+}
+
+/* PERAWATAN */
+.care-section {
+  padding: 75px 0;
+}
+
+.care-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.care-card {
+  padding: 30px;
+  background: #f1f6ef;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.care-icon {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.care-card h3 {
+  color: #34563b;
+  margin-bottom: 8px;
+}
+
+.care-card p {
+  font-size: 14px;
+  color: #788578;
+}
+
+/* FOOTER */
+.footer {
+  background: #294b33;
+  padding: 40px 0;
+  text-align: center;
+  color: #e4eee1;
+}
+
+.footer-logo {
+  color: white;
+}
+
+.footer-logo span {
+  color: #a9c69e;
+}
+
+.footer p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.copyright {
+  opacity: 0.7;
+  margin-top: 20px !important;
+}
+
+/* MODAL DETAIL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  border: none;
+  background: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#modalBody img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+#modalBody h2 {
+  color: #34563b;
+  margin: 10px 0;
+}
+
+#modalBody h3 {
+  color: #527c58;
+  margin: 20px 0 5px;
+}
+
+#modalBody p {
+  color: #718071;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .plant-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .care-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image img {
+    height: 280px;
+  }
+}
+
+@media (max-width: 550px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px 5%;
+    gap: 18px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .plant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 50px 0;
+  }
+
+  .about h2,
+  .section-heading h2 {
+    font-size: 26px;
+  }
+}
