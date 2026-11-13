@@ -23,68 +23,46 @@ const dataTanaman = [
   ["Pilea","daun","Daun bulat kecil yang menarik.","Tanaman hias berdaun bundar yang cocok untuk meja.","Terang tidak langsung","Saat media mulai kering","Dalam ruangan","Putar pot agar tumbuh merata."],
 
 const dataBunga = [
-  {
     nama: "Bunga Mawar",
     kategori: "Bunga",
     deskripsi: "Bunga mawar memiliki kelopak yang indah dan aroma yang khas.",
     image: "https://loremflickr.com/600/400/rose?lock=101"
-  },
-  {
     nama: "Bunga Melati",
     kategori: "Bunga",
     deskripsi: "Melati merupakan bunga putih kecil yang memiliki aroma harum.",
     image: "https://loremflickr.com/600/400/jasmine?lock=102"
-  },
-  {
     nama: "Bunga Anggrek",
     kategori: "Bunga",
     deskripsi: "Anggrek memiliki bentuk kelopak yang unik dan beragam warna.",
     image: "https://loremflickr.com/600/400/orchid?lock=103"
-  },
-  {
     nama: "Bunga Matahari",
     kategori: "Bunga",
     deskripsi: "Bunga matahari memiliki kelopak kuning cerah dan bagian tengah berwarna cokelat.",
     image: "https://loremflickr.com/600/400/sunflower?lock=104"
-  },
-  {
     nama: "Bunga Tulip",
     kategori: "Bunga",
     deskripsi: "Tulip dikenal dengan bentuk kelopaknya yang menyerupai cangkir.",
     image: "https://loremflickr.com/600/400/tulip?lock=105"
-  },
-  {
     nama: "Bunga Lavender",
     kategori: "Bunga",
     deskripsi: "Lavender memiliki warna ungu dan aroma yang menenangkan.",
     image: "https://loremflickr.com/600/400/lavender?lock=106"
-  },
-  {
     nama: "Bunga Kembang Sepatu",
     kategori: "Bunga",
     deskripsi: "Kembang sepatu memiliki kelopak lebar dengan warna yang mencolok.",
     image: "https://loremflickr.com/600/400/hibiscus?lock=107"
-  },
-  {
     nama: "Bunga Bougenville",
     kategori: "Bunga",
     deskripsi: "Bougenville dikenal dengan warna bunganya yang cerah dan menarik.",
     image: "https://loremflickr.com/600/400/bougainvillea?lock=108"
-  },
-  {
     nama: "Bunga Teratai",
     kategori: "Bunga",
     deskripsi: "Teratai merupakan tanaman air dengan bunga yang indah.",
     image: "https://loremflickr.com/600/400/lotus-flower?lock=109"
-  },
-  {
     nama: "Bunga Krisan",
     kategori: "Bunga",
     deskripsi: "Krisan memiliki banyak lapisan kelopak dan pilihan warna.",
     image: "https://loremflickr.com/600/400/chrysanthemum?lock=110"
-  }
-];
-
   ["Echeveria","sukulen","Daun tebal tersusun menyerupai bunga.","Sukulen dengan daun tebal berbentuk roset.","Terang","Setelah media kering","Area terang","Gunakan media khusus sukulen."],
   ["Kaktus","sukulen","Tanaman unik yang menyimpan air.","Kelompok tanaman sukulen dengan bentuk beragam.","Matahari cukup","Setelah media kering","Area terang","Hindari genangan air."],
   ["Haworthia","sukulen","Sukulen kecil dengan bentuk daun unik.","Sukulen kecil dengan susunan daun yang khas.","Terang tidak langsung","Setelah media kering","Dalam ruangan","Gunakan pot berlubang."],
