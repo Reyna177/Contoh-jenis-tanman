@@ -1,223 +1,273 @@
 
+// ==========================================
+// RUANG HIJAU - JAVASCRIPT
+// ==========================================
+
+// DAFTAR TANAMAN DAN FOTO
+
 const dataTanaman = [
-  // TANAMAN DAUN
+
+  // ========================================
+  // 1. TANAMAN DAUN (12 TANAMAN)
+  // ========================================
+
   {
     nama: "Monstera",
     kategori: "daun",
-    deskripsi: "Tanaman berdaun lebar dengan lubang alami dan tampilan tropis.",
-    perawatan: "Letakkan di tempat terang tanpa matahari langsung. Siram saat tanah mulai kering.",
-    gambar: "https://loremflickr.com/600/400/monstera,plant?lock=101"
+    deskripsi: "Monstera memiliki daun lebar dengan lubang alami yang memberikan kesan tropis.",
+    perawatan: "Letakkan di tempat terang tanpa sinar matahari langsung. Siram saat tanah mulai kering.",
+    gambar: "https://loremflickr.com/600/400/monstera?lock=101"
   },
+
   {
     nama: "Lidah Mertua",
     kategori: "daun",
-    deskripsi: "Memiliki daun tegak dengan corak hijau kekuningan.",
-    perawatan: "Siram secukupnya dan letakkan di tempat terang.",
-    gambar: "https://loremflickr.com/600/400/sansevieria,plant?lock=102"
+    deskripsi: "Tanaman dengan daun tegak dan corak hijau kekuningan.",
+    perawatan: "Siram secukupnya dan letakkan di tempat dengan cahaya terang.",
+    gambar: "https://loremflickr.com/600/400/sansevieria?lock=102"
   },
+
   {
     nama: "Aglonema",
     kategori: "daun",
-    deskripsi: "Tanaman dengan kombinasi warna hijau, merah, dan merah muda.",
+    deskripsi: "Aglonema memiliki perpaduan warna hijau, merah, dan merah muda.",
     perawatan: "Letakkan di tempat teduh yang terang dan jaga tanah sedikit lembap.",
-    gambar: "https://loremflickr.com/600/400/aglaonema,plant?lock=103"
+    gambar: "https://loremflickr.com/600/400/aglaonema?lock=103"
   },
+
   {
     nama: "Sirih Gading",
     kategori: "daun",
     deskripsi: "Tanaman merambat dengan daun berbentuk hati.",
-    perawatan: "Siram saat tanah mulai kering dan berikan cahaya tidak langsung.",
-    gambar: "https://loremflickr.com/600/400/golden,pothos?lock=104"
+    perawatan: "Siram ketika tanah mulai kering dan berikan cahaya tidak langsung.",
+    gambar: "https://loremflickr.com/600/400/pothos?lock=104"
   },
+
   {
     nama: "Calathea",
     kategori: "daun",
-    deskripsi: "Memiliki motif daun unik dengan warna hijau yang menarik.",
-    perawatan: "Jaga kelembapan dan hindari tanah terlalu kering.",
-    gambar: "https://loremflickr.com/600/400/calathea,plant?lock=105"
+    deskripsi: "Calathea memiliki motif daun unik dengan warna hijau yang menarik.",
+    perawatan: "Jaga kelembapan tanah dan hindari sinar matahari langsung.",
+    gambar: "https://loremflickr.com/600/400/calathea?lock=105"
   },
+
   {
     nama: "Philodendron",
     kategori: "daun",
-    deskripsi: "Tanaman hias dengan bentuk daun yang beragam.",
+    deskripsi: "Tanaman hias dengan bentuk daun beragam dan warna hijau segar.",
     perawatan: "Berikan cahaya tidak langsung dan siram secara teratur.",
-    gambar: "https://loremflickr.com/600/400/philodendron,plant?lock=106"
+    gambar: "https://loremflickr.com/600/400/philodendron?lock=106"
   },
+
   {
     nama: "Kuping Gajah",
     kategori: "daun",
-    deskripsi: "Memiliki daun besar berbentuk hati dengan tulang daun jelas.",
-    perawatan: "Sediakan tempat teduh dan media tanam lembap.",
-    gambar: "https://loremflickr.com/600/400/anthurium,crystallinum?lock=107"
+    deskripsi: "Memiliki daun besar berbentuk hati dengan tulang daun yang jelas.",
+    perawatan: "Sediakan tempat teduh dan jaga media tanam tetap lembap.",
+    gambar: "https://loremflickr.com/600/400/anthurium?lock=107"
   },
+
   {
     nama: "Pilea",
     kategori: "daun",
-    deskripsi: "Tanaman dengan daun bulat yang tersusun menarik.",
+    deskripsi: "Tanaman dengan daun bulat yang tersusun menarik pada batangnya.",
     perawatan: "Berikan cahaya terang tidak langsung dan siram secukupnya.",
-    gambar: "https://loremflickr.com/600/400/pilea,peperomioides?lock=108"
+    gambar: "https://loremflickr.com/600/400/pilea?lock=108"
   },
+
   {
     nama: "Pakis Boston",
     kategori: "daun",
-    deskripsi: "Daun kecil memanjang yang tumbuh rimbun dan menjuntai.",
-    perawatan: "Jaga kelembapan dan hindari sinar matahari langsung.",
-    gambar: "https://loremflickr.com/600/400/boston,fern?lock=109"
+    deskripsi: "Tanaman dengan daun kecil memanjang yang tumbuh rimbun.",
+    perawatan: "Jaga kelembapan dan hindari paparan matahari langsung.",
+    gambar: "https://loremflickr.com/600/400/bostonfern?lock=109"
   },
+
   {
     nama: "Karet Kebo",
     kategori: "daun",
     deskripsi: "Memiliki daun tebal dan mengilap berwarna hijau pekat.",
-    perawatan: "Letakkan di tempat terang dan siram saat tanah mengering.",
-    gambar: "https://loremflickr.com/600/400/rubber,plant?lock=110"
+    perawatan: "Letakkan di tempat terang dan siram ketika tanah mulai kering.",
+    gambar: "https://loremflickr.com/600/400/rubberplant?lock=110"
   },
+
   {
     nama: "Dieffenbachia",
     kategori: "daun",
-    deskripsi: "Memiliki corak hijau dan krem pada permukaan daunnya.",
-    perawatan: "Berikan cahaya tidak langsung dan siram secukupnya. Getahnya dapat menyebabkan iritasi.",
-    gambar: "https://loremflickr.com/600/400/dieffenbachia,plant?lock=111"
+    deskripsi: "Tanaman dengan corak hijau dan krem pada permukaan daunnya.",
+    perawatan: "Berikan cahaya tidak langsung. Getahnya dapat menyebabkan iritasi.",
+    gambar: "https://loremflickr.com/600/400/dieffenbachia?lock=111"
   },
+
   {
     nama: "Puring",
     kategori: "daun",
-    deskripsi: "Daunnya memiliki perpaduan warna hijau, kuning, merah, dan jingga.",
+    deskripsi: "Puring memiliki daun berwarna hijau, kuning, merah, dan jingga.",
     perawatan: "Sukai tempat terang dan siram ketika tanah mulai mengering.",
-    gambar: "https://loremflickr.com/600/400/croton,plant?lock=112"
+    gambar: "https://loremflickr.com/600/400/crotonplant?lock=112"
   },
 
-  // TANAMAN BUNGA
+
+  // ========================================
+  // 2. TANAMAN BUNGA (10 TANAMAN)
+  // ========================================
+
   {
     nama: "Mawar",
     kategori: "bunga",
-    deskripsi: "Bunga dengan kelopak berlapis dan warna yang beragam.",
+    deskripsi: "Bunga mawar memiliki kelopak berlapis dengan warna yang beragam.",
     perawatan: "Berikan sinar matahari cukup dan siram pada bagian tanah.",
-    gambar: "https://loremflickr.com/600/400/rose,flower?lock=201"
+    gambar: "https://loremflickr.com/600/400/roseflower?lock=201"
   },
+
   {
     nama: "Melati",
     kategori: "bunga",
     deskripsi: "Bunga putih kecil yang memiliki aroma harum.",
-    perawatan: "Letakkan di tempat yang mendapat sinar matahari dan jaga tanah tetap lembap.",
-    gambar: "https://loremflickr.com/600/400/jasmine,flower?lock=202"
+    perawatan: "Letakkan di tempat yang mendapat sinar matahari cukup.",
+    gambar: "https://loremflickr.com/600/400/jasmineflower?lock=202"
   },
+
   {
     nama: "Anggrek",
     kategori: "bunga",
-    deskripsi: "Bunga dengan bentuk kelopak unik dan warna menarik.",
+    deskripsi: "Anggrek memiliki bentuk kelopak unik dan warna yang menarik.",
     perawatan: "Gunakan media tanam khusus anggrek dan berikan cahaya tidak langsung.",
-    gambar: "https://loremflickr.com/600/400/orchid,flower?lock=203"
+    gambar: "https://loremflickr.com/600/400/orchidflower?lock=203"
   },
+
   {
     nama: "Bunga Matahari",
     kategori: "bunga",
-    deskripsi: "Bunga kuning cerah dengan bagian tengah berwarna gelap.",
+    deskripsi: "Bunga berwarna kuning cerah dengan bagian tengah berwarna gelap.",
     perawatan: "Letakkan di area yang mendapat sinar matahari dan siram teratur.",
-    gambar: "https://loremflickr.com/600/400/sunflower,flower?lock=204"
+    gambar: "https://loremflickr.com/600/400/sunflower?lock=204"
   },
+
   {
     nama: "Tulip",
     kategori: "bunga",
-    deskripsi: "Bunga dengan bentuk kelopak menyerupai cangkir.",
+    deskripsi: "Tulip memiliki bentuk kelopak menyerupai cangkir.",
     perawatan: "Gunakan media tanam dengan drainase baik.",
-    gambar: "https://loremflickr.com/600/400/tulip,flower?lock=205"
+    gambar: "https://loremflickr.com/600/400/tulipflower?lock=205"
   },
+
   {
     nama: "Lavender",
     kategori: "bunga",
-    deskripsi: "Bunga ungu yang memiliki aroma khas.",
+    deskripsi: "Bunga berwarna ungu dengan aroma khas.",
     perawatan: "Sukai sinar matahari dan tanah yang tidak terlalu lembap.",
-    gambar: "https://loremflickr.com/600/400/lavender,flower?lock=206"
+    gambar: "https://loremflickr.com/600/400/lavenderflower?lock=206"
   },
+
   {
     nama: "Kembang Sepatu",
     kategori: "bunga",
     deskripsi: "Memiliki kelopak lebar dengan warna yang mencolok.",
     perawatan: "Berikan sinar matahari cukup dan siram saat tanah mulai kering.",
-    gambar: "https://loremflickr.com/600/400/hibiscus,flower?lock=207"
+    gambar: "https://loremflickr.com/600/400/hibiscusflower?lock=207"
   },
+
   {
     nama: "Bougenville",
     kategori: "bunga",
-    deskripsi: "Tanaman hias dengan warna bunga merah muda, ungu, putih, atau jingga.",
+    deskripsi: "Tanaman hias dengan warna merah muda, ungu, putih, dan jingga.",
     perawatan: "Letakkan di tempat yang terkena sinar matahari.",
-    gambar: "https://loremflickr.com/600/400/bougainvillea,flower?lock=208"
+    gambar: "https://loremflickr.com/600/400/bougainvillea?lock=208"
   },
+
   {
     nama: "Teratai",
     kategori: "bunga",
     deskripsi: "Bunga air dengan daun lebar yang mengapung di permukaan air.",
-    perawatan: "Tanam di wadah berisi air dengan sinar matahari yang cukup.",
-    gambar: "https://loremflickr.com/600/400/water,lily,flower?lock=209"
+    perawatan: "Tanam di wadah berisi air dengan sinar matahari cukup.",
+    gambar: "https://loremflickr.com/600/400/waterlily?lock=209"
   },
+
   {
     nama: "Krisan",
     kategori: "bunga",
-    deskripsi: "Bunga dengan banyak lapisan kelopak dan warna beragam.",
+    deskripsi: "Bunga dengan banyak lapisan kelopak dan pilihan warna beragam.",
     perawatan: "Berikan cahaya matahari pagi dan jaga tanah tetap lembap.",
-    gambar: "https://loremflickr.com/600/400/chrysanthemum,flower?lock=210"
+    gambar: "https://loremflickr.com/600/400/chrysanthemum?lock=210"
   },
 
-  // SUKULEN
+
+  // ========================================
+  // 3. TANAMAN SUKULEN (8 TANAMAN)
+  // ========================================
+
   {
     nama: "Echeveria",
     kategori: "sukulen",
-    deskripsi: "Sukulen dengan susunan daun menyerupai bunga mawar.",
+    deskripsi: "Sukulen dengan susunan daun menyerupai bentuk bunga mawar.",
     perawatan: "Letakkan di tempat terang dan siram ketika media tanam kering.",
-    gambar: "https://loremflickr.com/600/400/echeveria,succulent?lock=301"
+    gambar: "https://loremflickr.com/600/400/echeveria?lock=301"
   },
+
   {
     nama: "Haworthia",
     kategori: "sukulen",
-    deskripsi: "Tanaman kecil dengan daun tebal dan corak putih.",
+    deskripsi: "Tanaman kecil dengan daun tebal dan corak putih yang khas.",
     perawatan: "Sukai cahaya terang tidak langsung dan penyiraman secukupnya.",
-    gambar: "https://loremflickr.com/600/400/haworthia,succulent?lock=302"
+    gambar: "https://loremflickr.com/600/400/haworthia?lock=302"
   },
+
   {
     nama: "Lidah Buaya",
     kategori: "sukulen",
     deskripsi: "Memiliki daun tebal memanjang yang menyimpan air.",
     perawatan: "Berikan cahaya cukup dan gunakan tanah dengan drainase baik.",
-    gambar: "https://loremflickr.com/600/400/aloe,vera,plant?lock=303"
+    gambar: "https://loremflickr.com/600/400/aloevera?lock=303"
   },
+
   {
     nama: "Kaktus Mini",
     kategori: "sukulen",
     deskripsi: "Kaktus berukuran kecil yang cocok menjadi hiasan meja.",
     perawatan: "Letakkan di tempat terang dan hindari penyiraman berlebihan.",
-    gambar: "https://loremflickr.com/600/400/mini,cactus?lock=304"
+    gambar: "https://loremflickr.com/600/400/minicactus?lock=304"
   },
+
   {
     nama: "Jade Plant",
     kategori: "sukulen",
     deskripsi: "Memiliki daun kecil, tebal, dan mengilap.",
     perawatan: "Sediakan cahaya terang dan siram setelah tanah mengering.",
-    gambar: "https://loremflickr.com/600/400/jade,plant?lock=305"
+    gambar: "https://loremflickr.com/600/400/jadeplant?lock=305"
   },
+
   {
     nama: "Sedum",
     kategori: "sukulen",
-    deskripsi: "Tanaman dengan daun kecil yang tumbuh rapat.",
+    deskripsi: "Tanaman sukulen dengan daun kecil yang tumbuh rapat.",
     perawatan: "Sukai sinar matahari dan media tanam yang tidak menahan air.",
-    gambar: "https://loremflickr.com/600/400/sedum,succulent?lock=306"
+    gambar: "https://loremflickr.com/600/400/sedum?lock=306"
   },
+
   {
     nama: "Graptopetalum",
     kategori: "sukulen",
-    deskripsi: "Memiliki daun tebal tersusun membentuk roset.",
+    deskripsi: "Memiliki daun tebal yang tersusun membentuk roset.",
     perawatan: "Letakkan di tempat terang dan siram ketika media tanam kering.",
-    gambar: "https://loremflickr.com/600/400/graptopetalum,succulent?lock=307"
+    gambar: "https://loremflickr.com/600/400/graptopetalum?lock=307"
   },
+
   {
     nama: "Kalanchoe",
     kategori: "sukulen",
-    deskripsi: "Tanaman berdaun tebal yang beberapa jenisnya menghasilkan bunga kecil.",
+    deskripsi: "Tanaman dengan daun tebal dan bunga kecil yang menarik.",
     perawatan: "Berikan cahaya terang dan siram secukupnya.",
-    gambar: "https://loremflickr.com/600/400/kalanchoe,succulent?lock=308"
+    gambar: "https://loremflickr.com/600/400/kalanchoe?lock=308"
   }
+
 ];
 
-// ELEMEN HTML
+
+// ==========================================
+// MENGHUBUNGKAN JAVASCRIPT DENGAN HTML
+// ==========================================
+
 const plantGrid = document.getElementById("plantGrid");
 const searchInput = document.getElementById("searchInput");
 const modal = document.getElementById("plantModal");
@@ -226,20 +276,27 @@ const modalClose = document.getElementById("modalClose");
 
 let kategoriAktif = "semua";
 
-// MENAMPILKAN TANAMAN
+
+// ==========================================
+// MENAMPILKAN KARTU TANAMAN
+// ==========================================
+
 function tampilkanTanaman() {
+
   const kataKunci = searchInput.value.toLowerCase().trim();
 
   const hasil = dataTanaman.filter((tanaman) => {
+
     const cocokKategori =
       kategoriAktif === "semua" ||
       tanaman.kategori === kategoriAktif;
 
-    const cocokKata =
+    const cocokPencarian =
       tanaman.nama.toLowerCase().includes(kataKunci) ||
       tanaman.deskripsi.toLowerCase().includes(kataKunci);
 
-    return cocokKategori && cocokKata;
+    return cocokKategori && cocokPencarian;
+
   });
 
   plantGrid.innerHTML = "";
@@ -247,15 +304,17 @@ function tampilkanTanaman() {
   if (hasil.length === 0) {
     plantGrid.innerHTML = `
       <div class="empty-result">
-        <h3>Tanaman tidak ditemukan</h3>
-        <p>Coba gunakan kata pencarian lain.</p>
+        <h3>Tanaman Tidak Ditemukan</h3>
+        <p>Silakan coba kata pencarian lainnya.</p>
       </div>
     `;
     return;
   }
 
   hasil.forEach((tanaman) => {
+
     const index = dataTanaman.indexOf(tanaman);
+
     const kartu = document.createElement("article");
 
     kartu.className = "plant-card";
@@ -269,22 +328,47 @@ function tampilkanTanaman() {
       >
 
       <div class="plant-info">
-        <span class="plant-category">${tanaman.kategori}</span>
+
+        <span class="plant-category">
+          ${tanaman.kategori}
+        </span>
+
         <h3>${tanaman.nama}</h3>
+
         <p>${tanaman.deskripsi}</p>
-        <button class="detail-button" data-index="${index}">
+
+        <button
+          class="detail-button"
+          data-index="${index}"
+        >
           Lihat Detail
         </button>
+
       </div>
     `;
 
     plantGrid.appendChild(kartu);
+
   });
+
 }
 
+
+// ==========================================
+// FITUR PENCARIAN
+// ==========================================
+
+searchInput.addEventListener("input", tampilkanTanaman);
+
+
+// ==========================================
 // FILTER KATEGORI
+// ==========================================
+
 document.querySelectorAll(".filter-btn").forEach((tombol) => {
+
   tombol.addEventListener("click", () => {
+
     kategoriAktif = tombol.dataset.category;
 
     document.querySelectorAll(".filter-btn").forEach((item) => {
@@ -292,31 +376,40 @@ document.querySelectorAll(".filter-btn").forEach((tombol) => {
     });
 
     tombol.classList.add("active");
+
     tampilkanTanaman();
+
   });
+
 });
 
-// PENCARIAN
-searchInput.addEventListener("input", tampilkanTanaman);
 
+// ==========================================
 // DETAIL TANAMAN
+// ==========================================
+
 plantGrid.addEventListener("click", (event) => {
+
   const tombol = event.target.closest(".detail-button");
 
   if (!tombol) return;
 
-  const tanaman = dataTanaman[Number(tombol.dataset.index)];
+  const index = Number(tombol.dataset.index);
+  const tanaman = dataTanaman[index];
 
   if (!tanaman) return;
 
   modalBody.innerHTML = `
+
     <img
       src="${tanaman.gambar}"
       alt="${tanaman.nama}"
       onerror="this.onerror=null;this.src='https://placehold.co/600x400/e8f0e8/49634c?text=Foto+Tanaman';"
     >
 
-    <span class="plant-category">${tanaman.kategori}</span>
+    <span class="plant-category">
+      ${tanaman.kategori}
+    </span>
 
     <h2>${tanaman.nama}</h2>
 
@@ -325,51 +418,83 @@ plantGrid.addEventListener("click", (event) => {
     <h3>Panduan Perawatan</h3>
 
     <p>${tanaman.perawatan}</p>
+
   `;
 
   modal.classList.add("show");
+
   document.body.style.overflow = "hidden";
+
 });
 
-// TUTUP MODAL
+
+// ==========================================
+// MENUTUP DETAIL TANAMAN
+// ==========================================
+
 function tutupModal() {
+
   modal.classList.remove("show");
+
   document.body.style.overflow = "";
+
 }
 
 modalClose.addEventListener("click", tutupModal);
 
 modal.addEventListener("click", (event) => {
+
   if (event.target === modal) {
     tutupModal();
   }
+
 });
 
 document.addEventListener("keydown", (event) => {
+
   if (event.key === "Escape") {
     tutupModal();
   }
+
 });
 
-// MENU HP
+
+// ==========================================
+// MENU NAVIGASI HP
+// ==========================================
+
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
 menuToggle.addEventListener("click", () => {
+
   navMenu.classList.toggle("active");
+
 });
 
 navMenu.querySelectorAll("a").forEach((link) => {
+
   link.addEventListener("click", () => {
+
     navMenu.classList.remove("active");
+
   });
+
 });
 
-// TAHUN FOOTER
+
+// ==========================================
+// TAHUN OTOMATIS FOOTER
+// ==========================================
+
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
-// JALANKAN WEBSITE
+
+// ==========================================
+// MENJALANKAN WEBSITE
+// ==========================================
+
 tampilkanTanaman();
 
 console.log("RUANG HIJAU berhasil dijalankan!");
