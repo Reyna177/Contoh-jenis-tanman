@@ -2,137 +2,266 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RUANG HIJAU | Dunia Tanaman Hias</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FloraVerse - Ensiklopedia tanaman dan identifikasi tanaman menggunakan AI.">
+    <title>FloraVerse | Plant Encyclopedia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="header">
-    <div class="container navbar">
-      <a href="#" class="logo">RUANG<span>HIJAU.</span></a>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-icon">✿</span>
+            FloraVerse
+        </a>
 
-      <nav id="navMenu">
-        <a href="#beranda">Beranda</a>
-        <a href="#tanaman">Tanaman</a>
-        <a href="#perawatan">Perawatan</a>
-        <a href="#tentang">Tentang</a>
-      </nav>
+        <nav>
+            <a href="#home">Beranda</a>
+            <a href="#plants">Jenis Tanaman</a>
+            <a href="#scan">Scan Tanaman</a>
+            <a href="#about">Tentang</a>
+        </nav>
 
-      <button class="menu-toggle" id="menuToggle">☰</button>
-    </div>
-  </header>
+        <a href="#scan" class="nav-button">Mulai Scan ↗</a>
+    </header>
 
-  <main>
-    <section class="hero" id="beranda">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <span class="eyebrow">SELAMAT DATANG DI RUANG HIJAU</span>
-          <h1>Hadirkan Kesegaran Alam di Dalam Ruangan</h1>
-          <p>
-            Temukan berbagai tanaman hias, kenali keunikannya,
-            dan pelajari cara merawatnya dengan mudah.
-          </p>
-          <a href="#tanaman" class="btn-primary">Jelajahi Tanaman</a>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="eyebrow">✦ EXPLORE THE WORLD OF PLANTS</span>
+
+            <h1>Kenali Alam,<br>
+                Mulai dari <span>Tanaman.</span>
+            </h1>
+
+            <p>
+                Temukan berbagai jenis tanaman, pelajari karakteristiknya,
+                dan kenali tanaman di sekitarmu hanya melalui sebuah foto.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#plants" class="primary-button">
+                    Jelajahi Tanaman →
+                </a>
+
+                <a href="#scan" class="secondary-button">
+                    ◎ Scan Sekarang
+                </a>
+            </div>
+
+            <div class="hero-stat">
+                <div>
+                    <h3>87.000+</h3>
+                    <p>Spesies pada layanan identifikasi</p>
+                </div>
+                <div>
+                    <h3>6 Kategori</h3>
+                    <p>Kelompok tanaman</p>
+                </div>
+            </div>
         </div>
 
         <div class="hero-image">
-          <img
-            src="https://loremflickr.com/700/550/indoor,tropical,plants?lock=501"
-            alt="Tanaman hias dalam ruangan"
-          >
+            <img
+                src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=1000&auto=format&fit=crop&q=85"
+                alt="Tanaman hijau"
+            >
+            <div class="image-label">
+                <span>🌿</span>
+                <div>
+                    <strong>Nature is beautiful</strong>
+                    <small>Discover the green world</small>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <section class="about" id="tentang">
-      <div class="container">
-        <span class="eyebrow">TENTANG KAMI</span>
-        <h2>Mengenal Dunia Tanaman Hias</h2>
-        <p>
-          RUANG HIJAU merupakan website informasi tanaman hias
-          yang membantu pengunjung mengenal berbagai jenis tanaman,
-          karakteristik, serta cara perawatannya.
-        </p>
-      </div>
-    </section>
-
-    <section class="plants-section" id="tanaman">
-      <div class="container">
+    <!-- CATEGORIES -->
+    <section class="categories section" id="about">
         <div class="section-heading">
-          <span class="eyebrow">KOLEKSI TANAMAN</span>
-          <h2>Temukan Tanaman Favoritmu</h2>
-          <p>Pilih tanaman yang ingin kamu kenali.</p>
+            <div>
+                <span class="eyebrow">EXPLORE CATEGORIES</span>
+                <h2>Jelajahi Kategori</h2>
+            </div>
+            <p>Temukan tanaman berdasarkan kelompoknya.</p>
         </div>
 
-        <div class="search-box">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Cari nama tanaman..."
-          >
-        </div>
+        <div class="category-list">
+            <button class="category-card active" data-category="Semua">
+                <span>🌱</span>
+                <strong>Semua</strong>
+            </button>
 
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-category="semua">Semua</button>
-          <button class="filter-btn" data-category="daun">Tanaman Daun</button>
-          <button class="filter-btn" data-category="bunga">Tanaman Bunga</button>
-          <button class="filter-btn" data-category="sukulen">Sukulen</button>
-        </div>
+            <button class="category-card" data-category="Hias">
+                <span>🪴</span>
+                <strong>Tanaman Hias</strong>
+            </button>
 
-        <div class="plant-grid" id="plantGrid"></div>
-      </div>
+            <button class="category-card" data-category="Buah">
+                <span>🍊</span>
+                <strong>Tanaman Buah</strong>
+            </button>
+
+            <button class="category-card" data-category="Obat">
+                <span>🌿</span>
+                <strong>Tanaman Obat</strong>
+            </button>
+
+            <button class="category-card" data-category="Sayuran">
+                <span>🥬</span>
+                <strong>Sayuran</strong>
+            </button>
+
+            <button class="category-card" data-category="Bunga">
+                <span>🌸</span>
+                <strong>Tanaman Bunga</strong>
+            </button>
+        </div>
     </section>
 
-    <section class="care-section" id="perawatan">
-      <div class="container">
+    <!-- PLANT COLLECTION -->
+    <section class="plants section" id="plants">
         <div class="section-heading">
-          <span class="eyebrow">TIPS TANAMAN</span>
-          <h2>Dasar Perawatan Tanaman</h2>
-          <p>Beberapa hal penting agar tanaman tetap tumbuh dengan baik.</p>
+            <div>
+                <span class="eyebrow">PLANT ENCYCLOPEDIA</span>
+                <h2>Kenali Jenis Tanaman</h2>
+            </div>
+            <p>Informasi lengkap berbagai tanaman dari seluruh dunia.</p>
         </div>
 
-        <div class="care-grid">
-          <article class="care-card">
-            <div class="care-icon">☀️</div>
-            <h3>Pencahayaan</h3>
-            <p>Sesuaikan kebutuhan cahaya dengan jenis tanaman.</p>
-          </article>
-
-          <article class="care-card">
-            <div class="care-icon">💧</div>
-            <h3>Penyiraman</h3>
-            <p>Siram tanaman sesuai kondisi tanah dan kebutuhan airnya.</p>
-          </article>
-
-          <article class="care-card">
-            <div class="care-icon">🌱</div>
-            <h3>Media Tanam</h3>
-            <p>Gunakan media tanam yang sesuai agar akar berkembang baik.</p>
-          </article>
+        <div class="search-area">
+            <div class="search-box">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Cari nama tanaman atau nama ilmiah..."
+                >
+            </div>
+            <span id="plantCount">0 tanaman ditemukan</span>
         </div>
-      </div>
+
+        <div class="plant-grid" id="plantGrid">
+            <!-- Kartu tanaman dibuat otomatis melalui JavaScript -->
+        </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container">
-      <a href="#" class="logo footer-logo">RUANG<span>HIJAU.</span></a>
-      <p>Temukan keindahan dan kesegaran dari dunia tanaman.</p>
-      <p class="copyright">
-        © <span id="year"></span> RUANG HIJAU. All Rights Reserved.
-      </p>
+    <!-- SCAN SECTION -->
+    <section class="scan-section" id="scan">
+        <div class="scan-container">
+            <div class="scan-text">
+                <span class="eyebrow">AI PLANT IDENTIFICATION</span>
+
+                <h2>Tidak tahu nama tanamannya?</h2>
+
+                <p>
+                    Ambil foto daun, bunga, buah, atau bagian tanaman lainnya.
+                    Sistem akan menganalisis foto dan memberikan kemungkinan
+                    nama tanaman beserta informasi ilmiahnya.
+                </p>
+
+                <ul>
+                    <li>✓ Identifikasi menggunakan AI</li>
+                    <li>✓ Nama ilmiah dan keluarga tanaman</li>
+                    <li>✓ Informasi hasil identifikasi</li>
+                    <li>✓ Beberapa kemungkinan hasil</li>
+                </ul>
+            </div>
+
+            <div class="scan-card">
+                <div class="scan-icon">📷</div>
+
+                <h3>Scan Tanamanmu</h3>
+
+                <p>
+                    Gunakan kamera atau pilih gambar dari perangkat.
+                </p>
+
+                <div class="camera-area" id="cameraArea">
+                    <video id="camera" autoplay playsinline></video>
+                    <canvas id="canvas" hidden></canvas>
+                    <img id="previewImage" alt="Pratinjau tanaman">
+                    <div id="cameraPlaceholder">
+                        <span>🌿</span>
+                        <p>Foto tanaman akan muncul di sini</p>
+                    </div>
+                </div>
+
+                <div class="scan-buttons">
+                    <button id="startCamera" class="secondary-button">
+                        Buka Kamera
+                    </button>
+
+                    <button id="capturePhoto" class="primary-button" hidden>
+                        Ambil Foto
+                    </button>
+                </div>
+
+                <label for="imageInput" class="upload-button">
+                    ↑ Pilih Foto Tanaman
+                </label>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/jpeg,image/png,image/webp"
+                    hidden
+                >
+
+                <button id="identifyButton" class="primary-button identify-button" disabled>
+                    Identifikasi Tanaman →
+                </button>
+
+                <p class="small-note">
+                    Gunakan foto tanaman yang jelas agar hasil lebih akurat.
+                </p>
+
+                <div id="scanStatus" role="status" aria-live="polite"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCAN RESULT -->
+    <section class="result-section section" id="resultSection" hidden>
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">IDENTIFICATION RESULT</span>
+                <h2>Hasil Identifikasi</h2>
+            </div>
+        </div>
+
+        <div id="resultContent"></div>
+    </section>
+
+    <!-- DETAIL MODAL -->
+    <div class="modal" id="plantModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Tutup">
+                ×
+            </button>
+            <div id="modalContent"></div>
+        </div>
     </div>
-  </footer>
 
-  <div class="modal" id="plantModal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">×</button>
-      <div id="modalBody"></div>
-    </div>
-  </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="#home" class="logo">
+            <span class="logo-icon">✿</span>
+            FloraVerse
+        </a>
 
-  <script src="script.js"></script>
+        <p>Explore Nature, Discover Every Plant.</p>
+
+        <small>© 2026 FloraVerse. All Rights Reserved.</small>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
