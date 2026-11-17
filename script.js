@@ -1,315 +1,80 @@
 
-/* =====================================
-   FLORAVERSE - JAVASCRIPT
-===================================== */
-
 const API_KEY = "MASUKKAN_API_KEY_PLANTNET";
-const API_URL = "https://my-api.plantnet.org/v2/identify/all";
 
-const $ = id => document.getElementById(id);
+const camera = document.getElementById("camera");
+const preview = document.getElementById("preview");
+const placeholder = document.getElementById("placeholder");
+const canvas = document.getElementById("canvas");
 
-const video = $("camera");
-const canvas = $("canvas");
-const preview = $("preview");
-const placeholder = $("placeholder");
+const cameraBtn = document.getElementById("cameraBtn");
+const captureBtn = document.getElementById("captureBtn");
+const imageInput = document.getElementById("imageInput");
+const identifyBtn = document.getElementById("identifyBtn");
+const resetBtn = document.getElementById("resetBtn");
 
-const cameraBtn = $("cameraBtn");
-const captureBtn = $("captureBtn");
-const identifyBtn = $("identifyBtn");
-const resetBtn = $("resetBtn");
+const statusBox = document.getElementById("status");
+const resultBox = document.getElementById("result");
 
-const imageInput = $("imageInput");
-const statusText = $("status");
-const resultBox = $("result");
-const plantGrid = $("plantGrid");
-const searchInput = $("searchInput");
-const categoryFilter = $("categoryFilter");
-const plantCount = $("plantCount");
-
-let cameraStream = null;
+let stream = null;
 let selectedImage = null;
-let previewURL = null;
 
-// =====================================
-// 1. DATA TANAMAN
-// Foto disimpan di folder assets
-// =====================================
+function showStatus(message) {
+  statusBox.textContent = message;
+}
 
-const plants = [
-  {
-    name: "Monstera",
-    scientific: "Monstera deliciosa",
-    category: "hias",
-    description: "Tanaman hias tropis dengan daun besar yang berlubang.",
-    image: "assets/monstera.jpg"
-  },
-  {
-    name: "Lidah Mertua",
-    scientific: "Dracaena trifasciata",
-    category: "hias",
-    description: "Tanaman dengan daun tegak dan corak yang khas.",
-    image: "assets/lidah-mertua.jpg"
-  },
-  {
-    name: "Mawar",
-    scientific: "Rosa",
-    category: "hias",
-    description: "Bunga dengan beragam warna dan aroma yang khas.",
-    image: "assets/mawar.jpg"
-  },
-  {
-    name: "Anggrek",
-    scientific: "Orchidaceae",
-    category: "hias",
-    description: "Tanaman berbunga dengan bentuk kelopak yang indah.",
-    image: "assets/anggrek.jpg"
-  },
-  {
-    name: "Lavender",
-    scientific: "Lavandula",
-    category: "hias",
-    description: "Tanaman berbunga ungu dengan aroma khas.",
-    image: "assets/lavender.jpg"
-  },
-  {
-    name: "Bunga Matahari",
-    scientific: "Helianthus annuus",
-    category: "hias",
-    description: "Bunga berwarna kuning yang tumbuh menghadap cahaya.",
-    image: "assets/matahari.jpg"
-  },
-  {
-    name: "Mangga",
-    scientific: "Mangifera indica",
-    category: "buah",
-    description: "Buah tropis yang memiliki rasa manis dan segar.",
-    image: "assets/mangga.jpg"
-  },
-  {
-    name: "Jambu Biji",
-    scientific: "Psidium guajava",
-    category: "buah",
-    description: "Buah tropis yang dikenal kaya vitamin C.",
-    image: "assets/jambu.jpg"
-  },
-  {
-    name: "Jeruk",
-    scientific: "Citrus × sinensis",
-    category: "buah",
-    description: "Buah dengan rasa segar dan kandungan vitamin C.",
-    image: "assets/jeruk.jpg"
-  },
-  {
-    name: "Stroberi",
-    scientific: "Fragaria × ananassa",
-    category: "buah",
-    description: "Buah berwarna merah dengan rasa manis dan sedikit asam.",
-    image: "assets/stroberi.jpg"
-  },
-  {
-    name: "Lidah Buaya",
-    scientific: "Aloe vera",
-    category: "obat",
-    description: "Tanaman sukulen yang banyak digunakan dalam perawatan kulit.",
-    image: "assets/lidah-buaya.jpg"
-  },
-  {
-    name: "Jahe",
-    scientific: "Zingiber officinale",
-    category: "obat",
-    description: "Rimpang aromatik yang sering digunakan sebagai rempah.",
-    image: "assets/jahe.jpg"
-  },
-  {
-    name: "Kunyit",
-    scientific: "Curcuma longa",
-    category: "obat",
-    description: "Rimpang berwarna kuning yang digunakan sebagai bumbu.",
-    image: "assets/kunyit.jpg"
-  },
-  {
-    name: "Daun Sirih",
-    scientific: "Piper betle",
-    category: "obat",
-    description: "Tanaman merambat dengan daun berbentuk hati.",
-    image: "assets/sirih.jpg"
-  }
-];
-
-// =====================================
-// 2. KATALOG TANAMAN
-// =====================================
-
-function displayPlants() {
-  const keyword = searchInput.value.toLowerCase().trim();
-  const category = categoryFilter.value;
-
-  const filtered = plants.filter(plant => {
-    const matchesName =
-      plant.name.toLowerCase().includes(keyword) ||
-      plant.scientific.toLowerCase().includes(keyword);
-
-    const matchesCategory =
-      category === "all" || plant.category === category;
-
-    return matchesName && matchesCategory;
-  });
-
-  plantGrid.innerHTML = "";
-  plantCount.textContent = `${filtered.length} PLANTS`;
-
-  if (!filtered.length) {
-    const message = document.createElement("p");
-    message.textContent = "Tanaman tidak ditemukan.";
-    plantGrid.appendChild(message);
+function showPreview(file) {
+  if (!file || !file.type.startsWith("image/")) {
+    showStatus("Pilih foto dengan format gambar yang benar.");
     return;
   }
 
-  filtered.forEach(plant => {
-    const card = document.createElement("article");
-    card.className = "plant-card";
+  selectedImage = file;
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = "block";
+  placeholder.style.display = "none";
+  camera.style.display = "none";
 
-    const image = document.createElement("img");
-    image.src = plant.image;
-    image.alt = plant.name;
-    image.loading = "lazy";
+  identifyBtn.disabled = false;
+  resultBox.innerHTML = "";
 
-    // Jika foto lokal belum tersedia, tampilkan
-    // gambar cadangan, bukan ikon gambar rusak.
-    image.onerror = () => {
-      image.onerror = null;
-      image.src = createFallbackImage(plant.name);
-    };
-
-    const info = document.createElement("div");
-    info.className = "plant-info";
-
-    const title = document.createElement("h3");
-    title.textContent = plant.name;
-
-    const scientific = document.createElement("p");
-    scientific.className = "scientific";
-    scientific.textContent = plant.scientific;
-
-    const description = document.createElement("p");
-    description.className = "description";
-    description.textContent = plant.description;
-
-    const categoryLabel = document.createElement("span");
-    categoryLabel.className = "category-label";
-    categoryLabel.textContent =
-      plant.category === "hias" ? "ORNAMENTAL" :
-      plant.category === "buah" ? "FRUIT" : "MEDICINAL";
-
-    info.append(title, scientific, description, categoryLabel);
-    card.append(image, info);
-    plantGrid.appendChild(card);
-  });
+  showStatus("Foto berhasil dipilih. Tekan tombol Identifikasi Tanaman.");
 }
 
-// Gambar cadangan jika file lokal belum ada.
-// Ini bukan pengganti foto tanaman asli.
-function createFallbackImage(name) {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg"
-         width="600" height="400">
-      <rect width="100%" height="100%" fill="#dfe8d9"/>
-      <text x="50%" y="46%" text-anchor="middle"
-        font-size="65" fill="#65816a">❀</text>
-      <text x="50%" y="67%" text-anchor="middle"
-        font-size="26" fill="#425e49">${name}</text>
-    </svg>
-  `;
-
-  return "data:image/svg+xml;charset=utf-8," +
-    encodeURIComponent(svg);
-}
-
-searchInput.addEventListener("input", displayPlants);
-categoryFilter.addEventListener("change", displayPlants);
-
-displayPlants();
-
-// =====================================
-// 3. STATUS
-// =====================================
-
-function showStatus(message) {
-  statusText.textContent = message;
-}
-
-// =====================================
-// 4. KAMERA
-// =====================================
-
-async function openCamera() {
+cameraBtn.addEventListener("click", async () => {
   try {
-    if (!navigator.mediaDevices?.getUserMedia) {
-      throw new Error("Gunakan localhost atau HTTPS untuk kamera.");
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
     }
 
-    stopCamera();
-
-    cameraStream = await navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { ideal: "environment" }
-      },
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
       audio: false
     });
 
-    video.srcObject = cameraStream;
-    video.hidden = false;
-    preview.hidden = true;
-    placeholder.hidden = true;
+    camera.srcObject = stream;
+    camera.style.display = "block";
+    preview.style.display = "none";
+    placeholder.style.display = "none";
+    captureBtn.hidden = false;
 
-    await video.play();
-
-    captureBtn.disabled = false;
-    identifyBtn.disabled = true;
-
-    showStatus("Camera ready. Take a photo of your plant.");
-
+    showStatus("Kamera siap. Silakan ambil foto tanaman.");
   } catch (error) {
     console.error(error);
-
-    showStatus(
-      "Camera error: " + error.message
-    );
+    showStatus("Kamera tidak dapat dibuka. Periksa izin kamera.");
   }
-}
+});
 
-function stopCamera() {
-  if (cameraStream) {
-    cameraStream.getTracks().forEach(track => track.stop());
-    cameraStream = null;
-  }
-
-  video.srcObject = null;
-  captureBtn.disabled = true;
-}
-
-// =====================================
-// 5. AMBIL FOTO
-// =====================================
-
-function capturePhoto() {
-  if (!cameraStream || !video.videoWidth) {
-    showStatus("Kamera belum siap.");
+captureBtn.addEventListener("click", () => {
+  if (!camera.videoWidth) {
+    showStatus("Kamera belum siap. Coba lagi.");
     return;
   }
 
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  canvas.width = camera.videoWidth;
+  canvas.height = camera.videoHeight;
 
   const context = canvas.getContext("2d");
-
-  context.drawImage(
-    video,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  context.drawImage(camera, 0, 0);
 
   canvas.toBlob(blob => {
     if (!blob) {
@@ -317,100 +82,52 @@ function capturePhoto() {
       return;
     }
 
-    selectedImage = new File(
-      [blob],
-      "plant-photo.jpg",
-      { type: "image/jpeg" }
-    );
+    const file = new File([blob], "foto-tanaman.jpg", {
+      type: "image/jpeg"
+    });
 
-    showPreview();
-    stopCamera();
+    showPreview(file);
 
-    showStatus("Photo captured. Ready to identify!");
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
 
-  }, "image/jpeg", 0.92);
-}
-
-// =====================================
-// 6. UPLOAD FOTO
-// =====================================
-
-imageInput.addEventListener("change", event => {
-  const file = event.target.files[0];
-
-  if (!file) return;
-
-  if (!file.type.startsWith("image/")) {
-    showStatus("Pilih file gambar yang benar.");
-    return;
-  }
-
-  if (file.size > 10 * 1024 * 1024) {
-    showStatus("Ukuran foto maksimal 10 MB.");
-    return;
-  }
-
-  stopCamera();
-
-  selectedImage = file;
-
-  showPreview();
-
-  showStatus("Image uploaded. Ready to identify!");
+    camera.srcObject = null;
+    camera.style.display = "none";
+    captureBtn.hidden = true;
+  }, "image/jpeg", 0.9);
 });
 
-// =====================================
-// 7. PREVIEW FOTO
-// =====================================
+imageInput.addEventListener("change", event => {
+  showPreview(event.target.files[0]);
+});
 
-function showPreview() {
-  if (previewURL) {
-    URL.revokeObjectURL(previewURL);
-  }
-
-  previewURL = URL.createObjectURL(selectedImage);
-
-  preview.src = previewURL;
-  preview.hidden = false;
-
-  video.hidden = true;
-  placeholder.hidden = true;
-
-  identifyBtn.disabled = false;
-  resultBox.innerHTML = "";
-}
-
-// =====================================
-// 8. IDENTIFIKASI PLANTNET
-// =====================================
-
-async function identifyPlant() {
+identifyBtn.addEventListener("click", async () => {
   if (!selectedImage) {
-    showStatus("Upload atau ambil foto dahulu.");
+    showStatus("Silakan ambil atau unggah foto terlebih dahulu.");
     return;
   }
 
-  if (!API_KEY ||
-      API_KEY === "MASUKKAN_API_KEY_PLANTNET") {
-    showStatus("API Key belum dimasukkan.");
+  if (
+    !API_KEY ||
+    API_KEY === "MASUKKAN_API_KEY_PLANTNET"
+  ) {
+    showStatus("API Key belum diisi. Masukkan API Key Pl@ntNet di script.js.");
     return;
   }
 
   identifyBtn.disabled = true;
-  identifyBtn.textContent = "Identifying...";
-
+  showStatus("Sedang mengenali tanaman. Mohon tunggu...");
   resultBox.innerHTML = "";
-
-  showStatus("Analyzing your plant photo...");
 
   try {
     const formData = new FormData();
-
     formData.append("images", selectedImage);
     formData.append("organs", "auto");
 
     const response = await fetch(
-      `${API_URL}?api-key=${encodeURIComponent(API_KEY)}&lang=id`,
+      `https://my-api.plantnet.org/v2/identify/all?api-key=${encodeURIComponent(API_KEY)}&lang=id`,
       {
         method: "POST",
         body: formData
@@ -421,138 +138,157 @@ async function identifyPlant() {
 
     if (!response.ok) {
       throw new Error(
-        data.message ||
-        data.error ||
-        `API Error ${response.status}`
+        data.message || `Terjadi kesalahan (${response.status})`
       );
     }
 
     if (!data.results || data.results.length === 0) {
-      throw new Error("Jenis tanaman belum berhasil dikenali.");
+      showStatus("Tanaman belum berhasil dikenali. Coba foto yang lebih jelas.");
+      return;
     }
 
-    showResults(data.results);
-
-    showStatus("Plant identification completed!");
-
+    tampilkanHasil(data.results);
+    showStatus("Tanaman berhasil dikenali!");
   } catch (error) {
-    console.error("PlantNet error:", error);
-
-    showStatus(
-      "Identification failed: " + error.message
-    );
-
+    console.error(error);
+    showStatus("Pemindaian gagal: " + error.message);
   } finally {
-    identifyBtn.disabled = !selectedImage;
-    identifyBtn.textContent = "Identify Plant ↗";
+    identifyBtn.disabled = false;
   }
-}
+});
 
-// =====================================
-// 9. HASIL IDENTIFIKASI
-// =====================================
+function tampilkanHasil(results) {
+  resultBox.innerHTML = "<h2>Hasil Identifikasi Tanaman</h2>";
 
-function showResults(results) {
-  resultBox.innerHTML = "";
-
-  const heading = document.createElement("h2");
-  heading.textContent = "Your Plant Identification";
-
-  resultBox.appendChild(heading);
-
-  results.slice(0, 5).forEach((item, index) => {
+  results.slice(0, 3).forEach((item, index) => {
     const species = item.species || {};
-
-    const scientific =
+    const nama = species.commonNames?.[0] || "Nama umum belum tersedia";
+    const ilmiah =
       species.scientificNameWithoutAuthor ||
       species.scientificName ||
-      "Unknown species";
+      "Belum diketahui";
 
-    const commonNames = species.commonNames || [];
+    const kecocokan = Math.round((item.score || 0) * 100);
 
-    const commonName =
-      commonNames[0] || "Common name unavailable";
+    const card = document.createElement("div");
+    card.className = "hasil-tanaman";
 
-    const family =
-      species.family?.scientificName || "Unknown family";
+    const heading = document.createElement("h3");
+    heading.textContent = `${index + 1}. ${nama}`;
 
-    const score = Math.round((item.score || 0) * 100);
+    const scientific = document.createElement("p");
+    scientific.textContent = `Nama ilmiah: ${ilmiah}`;
 
-    const card = document.createElement("article");
-    card.className = "plant-result-card";
+    const score = document.createElement("p");
+    score.textContent = `Tingkat kecocokan: ${kecocokan}%`;
 
-    const rank = document.createElement("h3");
-    rank.textContent =
-      index === 0 ? "BEST MATCH" : `ALTERNATIVE ${index + 1}`;
-
-    const name = document.createElement("h2");
-    name.textContent = commonName;
-
-    const scientificName = document.createElement("p");
-    scientificName.textContent = `Scientific name: ${scientific}`;
-
-    const familyName = document.createElement("p");
-    familyName.textContent = `Family: ${family}`;
-
-    const confidence = document.createElement("p");
-    confidence.textContent = `Similarity score: ${score}%`;
-
-    const warning = document.createElement("small");
-    warning.textContent =
-      "Similarity score is not a guarantee of correct identification.";
-
-    card.append(
-      rank,
-      name,
-      scientificName,
-      familyName,
-      confidence,
-      warning
-    );
-
+    card.append(heading, scientific, score);
     resultBox.appendChild(card);
   });
 }
 
-// =====================================
-// 10. RESET
-// =====================================
-
-function resetScanner() {
-  stopCamera();
-
+resetBtn.addEventListener("click", () => {
   selectedImage = null;
 
-  if (previewURL) {
-    URL.revokeObjectURL(previewURL);
-    previewURL = null;
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+    stream = null;
   }
 
-  preview.removeAttribute("src");
-  preview.hidden = true;
-
-  video.hidden = true;
-  placeholder.hidden = false;
-
-  resultBox.innerHTML = "";
-  imageInput.value = "";
-
+  camera.srcObject = null;
+  camera.style.display = "none";
+  preview.src = "";
+  preview.style.display = "none";
+  placeholder.style.display = "block";
+  captureBtn.hidden = true;
   identifyBtn.disabled = true;
+  imageInput.value = "";
+  resultBox.innerHTML = "";
 
-  showStatus("Choose an image to start identification.");
+  showStatus("Silakan ambil atau unggah foto tanaman baru.");
+});
+
+// =====================================
+// KATALOG TANAMAN
+// =====================================
+
+const plants = [
+  { name: "Monstera", scientific: "Monstera deliciosa", category: "hias", image: "assets/monstera.jpg" },
+  { name: "Lidah Mertua", scientific: "Dracaena trifasciata", category: "hias", image: "assets/lidah-mertua.jpg" },
+  { name: "Mawar", scientific: "Rosa", category: "hias", image: "assets/mawar.jpg" },
+  { name: "Anggrek", scientific: "Orchidaceae", category: "hias", image: "assets/anggrek.jpg" },
+  { name: "Lavender", scientific: "Lavandula", category: "hias", image: "assets/lavender.jpg" },
+  { name: "Bunga Matahari", scientific: "Helianthus annuus", category: "hias", image: "assets/matahari.jpg" },
+  { name: "Mangga", scientific: "Mangifera indica", category: "buah", image: "assets/mangga.jpg" },
+  { name: "Jambu Biji", scientific: "Psidium guajava", category: "buah", image: "assets/jambu.jpg" },
+  { name: "Jeruk", scientific: "Citrus", category: "buah", image: "assets/jeruk.jpg" },
+  { name: "Stroberi", scientific: "Fragaria × ananassa", category: "buah", image: "assets/stroberi.jpg" },
+  { name: "Lidah Buaya", scientific: "Aloe vera", category: "obat", image: "assets/lidah-buaya.jpg" },
+  { name: "Jahe", scientific: "Zingiber officinale", category: "obat", image: "assets/jahe.jpg" },
+  { name: "Kunyit", scientific: "Curcuma longa", category: "obat", image: "assets/kunyit.jpg" },
+  { name: "Sirih", scientific: "Piper betle", category: "obat", image: "assets/sirih.jpg" }
+];
+
+const plantGrid = document.getElementById("plantGrid");
+const searchInput = document.getElementById("searchInput");
+const filters = document.querySelectorAll(".filter");
+
+function tampilkanKatalog(category = "semua", keyword = "") {
+  plantGrid.innerHTML = "";
+
+  const filtered = plants.filter(plant => {
+    const cocokKategori = category === "semua" || plant.category === category;
+    const cocokNama = plant.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      plant.scientific.toLowerCase().includes(keyword.toLowerCase());
+
+    return cocokKategori && cocokNama;
+  });
+
+  filtered.forEach(plant => {
+    const card = document.createElement("article");
+    card.className = "plant-card";
+
+    const img = document.createElement("img");
+    img.src = plant.image;
+    img.alt = plant.name;
+    img.loading = "lazy";
+    img.onerror = () => {
+      img.src = "https://placehold.co/600x400/e9eee5/506d54?text=Foto+Tanaman";
+    };
+
+    const info = document.createElement("div");
+    info.className = "plant-info";
+
+    const title = document.createElement("h3");
+    title.textContent = plant.name;
+
+    const scientific = document.createElement("p");
+    scientific.textContent = plant.scientific;
+
+    info.append(title, scientific);
+    card.append(img, info);
+    plantGrid.appendChild(card);
+  });
+
+  if (filtered.length === 0) {
+    plantGrid.textContent = "Tanaman tidak ditemukan.";
+  }
 }
 
-// =====================================
-// 11. TOMBOL
-// =====================================
+let kategoriAktif = "semua";
 
-cameraBtn.addEventListener("click", openCamera);
-captureBtn.addEventListener("click", capturePhoto);
-identifyBtn.addEventListener("click", identifyPlant);
-resetBtn.addEventListener("click", resetScanner);
+filters.forEach(button => {
+  button.addEventListener("click", () => {
+    filters.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
 
-// =====================================
-// 12. BERSIHKAN KAMERA
-// =====================================
+    kategoriAktif = button.dataset.category;
+    tampilkanKatalog(kategoriAktif, searchInput.value);
+  });
+});
 
-window.addEventListener("pagehide", stopCamera);
+searchInput.addEventListener("input", () => {
+  tampilkanKatalog(kategoriAktif, searchInput.value);
+});
+
+tampilkanKatalog();
