@@ -1,255 +1,359 @@
 
-// =====================================
-// FLORAVERSE - PEMINDAIAN TANAMAN
-// =====================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-// Masukkan API Key Pl@ntNet milikmu
-const API_KEY = "MASUKKAN_API_KEY_KAMU";
+html {
+  scroll-behavior: smooth;
+}
 
-const camera = document.getElementById("camera");
-const preview = document.getElementById("preview");
-const placeholder = document.getElementById("placeholder");
-const canvas = document.getElementById("canvas");
+body {
+  background: #f8f7f0;
+  color: #344b3b;
+  font-family: 'DM Sans', sans-serif;
+}
 
-const cameraBtn = document.getElementById("cameraBtn");
-const captureBtn = document.getElementById("captureBtn");
-const imageInput = document.getElementById("imageInput");
-const identifyBtn = document.getElementById("identifyBtn");
-const resetBtn = document.getElementById("resetBtn");
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 8%;
+  background: #fff;
+}
 
-const statusBox = document.getElementById("status");
-const resultBox = document.getElementById("result");
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: #355541;
+  text-decoration: none;
+}
 
-let stream = null;
-let selectedImage = null;
+.logo span {
+  color: #9cae8c;
+}
 
-// Menampilkan pesan
-function showStatus(message) {
-  if (statusBox) {
-    statusBox.textContent = message;
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  color: #405746;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #92a985;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  padding: 75px 8%;
+}
+
+.eyebrow {
+  color: #8c9f7d;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 17px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 65px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: #94a985;
+}
+
+.hero-text > p:not(.eyebrow) {
+  line-height: 1.8;
+  max-width: 470px;
+  color: #718073;
+  margin-bottom: 30px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 180px 180px 15px 15px;
+}
+
+.main-button,
+.scanner-buttons button,
+.upload-button {
+  border: none;
+  background: #506d54;
+  color: white;
+  padding: 13px 23px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.section {
+  padding: 75px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2,
+.about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.section-heading p:not(.eyebrow) {
+  color: #7b887b;
+}
+
+.scanner-card {
+  background: white;
+  max-width: 750px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px #354d3910;
+}
+
+.preview-area {
+  height: 330px;
+  border: 2px dashed #bdcbb7;
+  background: #f7f8f2;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#preview,
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+#placeholder {
+  text-align: center;
+  padding: 20px;
+}
+
+#placeholder h3 {
+  margin: 10px 0;
+}
+
+#placeholder p {
+  color: #849084;
+  font-size: 13px;
+}
+
+.leaf-icon {
+  font-size: 42px;
+}
+
+.scanner-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.scanner-buttons button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.upload-button {
+  background: #e8eee2;
+  color: #405746;
+}
+
+.scanner-buttons .reset-button {
+  background: #e9e8df;
+  color: #405746;
+}
+
+#status {
+  text-align: center;
+  margin-top: 20px;
+  color: #758573;
+  font-size: 14px;
+}
+
+#result {
+  margin-top: 25px;
+}
+
+.hasil-tanaman {
+  background: #f2f5ed;
+  border-left: 4px solid #78936f;
+  padding: 18px;
+  margin-top: 12px;
+  border-radius: 10px;
+}
+
+.hasil-tanaman h3 {
+  margin-bottom: 10px;
+  color: #355541;
+}
+
+.hasil-tanaman p {
+  margin-top: 6px;
+  color: #687969;
+}
+
+#searchInput {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  padding: 14px 18px;
+  margin: 0 auto 20px;
+  border: 1px solid #dce3d7;
+  border-radius: 30px;
+  outline: none;
+  font: inherit;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filter {
+  padding: 10px 18px;
+  border: 1px solid #d8e1d2;
+  border-radius: 25px;
+  background: white;
+  color: #536b56;
+  cursor: pointer;
+}
+
+.filter.active {
+  background: #506d54;
+  color: white;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.plant-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #354d390c;
+}
+
+.plant-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  background: #e9eee5;
+}
+
+.plant-info {
+  padding: 18px;
+}
+
+.plant-info h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 7px;
+}
+
+.plant-info p {
+  color: #829082;
+  font-size: 13px;
+}
+
+.about {
+  text-align: center;
+  background: #edf1e8;
+}
+
+.about > p:last-child {
+  max-width: 650px;
+  margin: 18px auto 0;
+  line-height: 1.8;
+  color: #718073;
+}
+
+footer {
+  text-align: center;
+  padding: 35px;
+  background: #344b3b;
+  color: white;
+  line-height: 2;
+}
+
+@media (max-width: 750px) {
+  .navbar {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+
+  .hero-image img {
+    height: 300px;
+  }
+
+  .plant-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-// Menampilkan foto
-function showPreview(file) {
-  if (!file || !file.type.startsWith("image/")) {
-    showStatus("Pilih berkas foto dengan format gambar.");
-    return;
+@media (max-width: 480px) {
+  .plant-grid {
+    grid-template-columns: 1fr;
   }
 
-  selectedImage = file;
-
-  const imageURL = URL.createObjectURL(file);
-
-  preview.src = imageURL;
-  preview.style.display = "block";
-
-  if (placeholder) {
-    placeholder.style.display = "none";
+  .section-heading h2,
+  .about h2 {
+    font-size: 30px;
   }
 
-  if (identifyBtn) {
-    identifyBtn.disabled = false;
+  .scanner-card {
+    padding: 15px;
   }
 
-  if (resultBox) {
-    resultBox.innerHTML = "";
+  .preview-area {
+    height: 250px;
   }
-
-  showStatus("Foto berhasil dimasukkan. Tekan Identifikasi Tanaman.");
-}
-
-// Membuka kamera
-if (cameraBtn) {
-  cameraBtn.addEventListener("click", async () => {
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-        audio: false
-      });
-
-      camera.srcObject = stream;
-      camera.style.display = "block";
-      preview.style.display = "none";
-
-      if (captureBtn) {
-        captureBtn.style.display = "inline-block";
-      }
-
-      showStatus("Kamera berhasil dibuka.");
-    } catch (error) {
-      showStatus("Kamera tidak dapat dibuka. Periksa izin kamera pada peramban.");
-      console.error(error);
-    }
-  });
-}
-
-// Mengambil foto dari kamera
-if (captureBtn) {
-  captureBtn.addEventListener("click", () => {
-    if (!camera.videoWidth) {
-      showStatus("Kamera belum siap. Coba lagi.");
-      return;
-    }
-
-    canvas.width = camera.videoWidth;
-    canvas.height = camera.videoHeight;
-
-    const context = canvas.getContext("2d");
-    context.drawImage(camera, 0, 0);
-
-    canvas.toBlob((blob) => {
-      if (!blob) {
-        showStatus("Foto gagal diambil.");
-        return;
-      }
-
-      const file = new File([blob], "foto-tanaman.jpg", {
-        type: "image/jpeg"
-      });
-
-      showPreview(file);
-
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-        stream = null;
-      }
-
-      camera.style.display = "none";
-      captureBtn.style.display = "none";
-    }, "image/jpeg", 0.9);
-  });
-}
-
-// Mengunggah foto
-if (imageInput) {
-  imageInput.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    showPreview(file);
-  });
-}
-
-// Mengenali tanaman melalui Pl@ntNet
-if (identifyBtn) {
-  identifyBtn.addEventListener("click", async () => {
-    if (!selectedImage) {
-      showStatus("Pilih atau ambil foto tanaman terlebih dahulu.");
-      return;
-    }
-
-    if (
-      !API_KEY ||
-      API_KEY === "MASUKKAN_API_KEY_KAMU"
-    ) {
-      showStatus("API Key belum diisi. Masukkan API Key Pl@ntNet di script.js.");
-      return;
-    }
-
-    identifyBtn.disabled = true;
-    showStatus("Sedang mengenali tanaman. Mohon tunggu...");
-
-    if (resultBox) {
-      resultBox.innerHTML = "";
-    }
-
-    try {
-      const formData = new FormData();
-
-      formData.append("images", selectedImage);
-      formData.append("organs", "auto");
-
-      const response = await fetch(
-        `https://my-api.plantnet.org/v2/identify/all?api-key=${encodeURIComponent(API_KEY)}&lang=id`,
-        {
-          method: "POST",
-          body: formData
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.message || `Permintaan gagal (${response.status})`
-        );
-      }
-
-      if (!data.results || data.results.length === 0) {
-        showStatus("Tanaman belum berhasil dikenali. Coba foto yang lebih jelas.");
-        return;
-      }
-
-      tampilkanHasil(data.results);
-
-      showStatus("Tanaman berhasil dikenali!");
-    } catch (error) {
-      console.error("Kesalahan identifikasi:", error);
-
-      showStatus(
-        "Identifikasi gagal: " + error.message +
-        ". Periksa API Key dan koneksi internet."
-      );
-    } finally {
-      identifyBtn.disabled = false;
-    }
-  });
-}
-
-// Menampilkan hasil identifikasi
-function tampilkanHasil(results) {
-  const tanaman = results.slice(0, 3);
-
-  resultBox.innerHTML = `
-    <h2>Hasil Identifikasi Tanaman</h2>
-    ${tanaman.map((item, index) => {
-      const species = item.species || {};
-      const nama = species.commonNames?.[0] || "Nama umum belum tersedia";
-      const ilmiah = species.scientificNameWithoutAuthor ||
-                     species.scientificName ||
-                     "Belum diketahui";
-
-      const kecocokan = Math.round((item.score || 0) * 100);
-
-      return `
-        <div class="hasil-tanaman">
-          <h3>${index + 1}. ${nama}</h3>
-          <p><strong>Nama ilmiah:</strong> ${ilmiah}</p>
-          <p><strong>Tingkat kecocokan:</strong> ${kecocokan}%</p>
-        </div>
-      `;
-    }).join("")}
-  `;
-}
-
-// Mengulang pemindaian
-if (resetBtn) {
-  resetBtn.addEventListener("click", () => {
-    selectedImage = null;
-
-    preview.src = "";
-    preview.style.display = "none";
-
-    if (placeholder) {
-      placeholder.style.display = "block";
-    }
-
-    if (imageInput) {
-      imageInput.value = "";
-    }
-
-    if (resultBox) {
-      resultBox.innerHTML = "";
-    }
-
-    if (identifyBtn) {
-      identifyBtn.disabled = true;
-    }
-
-    showStatus("Silakan ambil atau unggah foto tanaman baru.");
-  });
-}
-
-// Kondisi awal
-if (identifyBtn) {
-  identifyBtn.disabled = true;
 }
