@@ -2,141 +2,192 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLORAVERSE - Dunia Tanaman</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7ef">
+  <title>FLORAVERSE | Plant Encyclopedia</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-<header class="navbar">
-    <a href="#" class="logo">FLORA<span>VERSE</span></a>
+<header class="header">
+  <a href="#home" class="brand">
+    <span class="brand-icon">✿</span>
+    FLORA<span>VERSE</span>
+  </a>
 
-    <nav>
-        <a href="#home">Beranda</a>
-        <a href="#catalog">Tanaman</a>
-        <a href="#scanner">Scan Tanaman</a>
-        <a href="#about">Tentang</a>
-    </nav>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#scanner">Identify Plant</a>
+    <a href="#catalog">Plant Collection</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <a href="#scanner" class="header-button">Try Scanner ↗</a>
 </header>
 
 <main>
 
 <section class="hero" id="home">
-    <div class="hero-content">
-        <p class="eyebrow">EXPLORE THE WORLD OF PLANTS</p>
-        <h1>Kenali Dunia<br>Tanaman Lebih Dekat</h1>
-        <p>
-            Temukan berbagai jenis tanaman dan pelajari
-            informasi menariknya melalui FLORAVERSE.
-        </p>
-        <a href="#catalog" class="btn">Jelajahi Tanaman</a>
+  <div class="hero-copy">
+    <span class="eyebrow">✿ DISCOVER THE BEAUTY OF NATURE</span>
+    <h1>Every Plant Has<br>A <em>Story</em> To Tell.</h1>
+    <p>
+      Explore the wonderful world of plants.
+      Identify, discover, and learn about nature
+      with FLORAVERSE.
+    </p>
+    <div class="hero-actions">
+      <a href="#catalog" class="primary-button">Explore Plants ↗</a>
+      <a href="#scanner" class="text-button">Identify a Plant →</a>
     </div>
+    <div class="hero-note">✳ Discover nature, one leaf at a time.</div>
+  </div>
 
-    <div class="hero-image">
-        <img
-        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000"
-        alt="Hutan hijau">
+  <div class="hero-visual">
+    <img src="assets/monstera.jpg"
+         alt="Daun monstera"
+         onerror="this.style.display='none'">
+    <div class="hero-caption">
+      <span>01 / BOTANICAL COLLECTION</span>
+      <strong>Nature is closer than you think.</strong>
     </div>
+    <span class="hero-decoration">✿</span>
+  </div>
+</section>
+
+<section class="intro-strip">
+  <span>PLANT DISCOVERY</span>
+  <span>✳</span>
+  <span>PLANT IDENTIFICATION</span>
+  <span>✳</span>
+  <span>BOTANICAL KNOWLEDGE</span>
 </section>
 
 <section class="scanner-section" id="scanner">
-    <div class="section-heading">
-        <p class="eyebrow">SMART PLANT IDENTIFICATION</p>
-        <h2>Scan Tanaman</h2>
-        <p>Ambil foto atau upload gambar untuk mengenali tanaman.</p>
+  <div class="section-title">
+    <span class="eyebrow">01 — SMART IDENTIFICATION</span>
+    <h2>What Plant Is This?</h2>
+    <p>Take a photo and let FLORAVERSE help you discover it.</p>
+  </div>
+
+  <div class="scanner-layout">
+    <div class="scanner-main">
+      <div class="scanner-preview">
+        <video id="camera" autoplay playsinline muted hidden></video>
+        <img id="preview" alt="Foto tanaman yang dipilih" hidden>
+
+        <div id="placeholder" class="placeholder">
+          <span class="camera-symbol">⌕</span>
+          <h3>Your plant goes here</h3>
+          <p>Open the camera or upload a plant photo.</p>
+        </div>
+      </div>
+
+      <canvas id="canvas" hidden></canvas>
+
+      <div class="scanner-buttons">
+        <button id="cameraBtn" class="primary-button">Open Camera</button>
+        <button id="captureBtn" class="soft-button" disabled>Take Photo</button>
+
+        <label class="soft-button upload-label" for="imageInput">
+          Upload Image
+        </label>
+        <input id="imageInput" type="file" accept="image/*" hidden>
+
+        <button id="identifyBtn" class="identify-button" disabled>
+          Identify Plant ↗
+        </button>
+      </div>
+
+      <button id="resetBtn" class="reset-button">↻ Reset Scanner</button>
+      <p id="status" class="status" aria-live="polite">
+        Choose an image to start identification.
+      </p>
     </div>
 
-    <div class="scanner-card">
+    <aside class="scanner-info">
+      <span class="eyebrow">HOW IT WORKS</span>
+      <h3>Discover your plant in three simple steps.</h3>
 
-        <div class="camera-area">
-            <video id="camera" autoplay playsinline
-                   muted hidden></video>
-
-            <img id="preview" alt="Preview tanaman" hidden>
-
-            <div id="cameraPlaceholder">
-                <div class="camera-icon">🌿</div>
-                <h3>Mulai Identifikasi</h3>
-                <p>Gunakan kamera atau pilih foto tanaman.</p>
-            </div>
-
-            <canvas id="canvas" hidden></canvas>
+      <div class="step">
+        <span>01</span>
+        <div>
+          <strong>Capture</strong>
+          <p>Take a clear picture of your plant.</p>
         </div>
+      </div>
 
-        <div class="scanner-controls">
-            <button id="startCamera" class="btn">
-                Buka Kamera
-            </button>
-
-            <button id="captureBtn" class="btn secondary" disabled>
-                Ambil Foto
-            </button>
-
-            <label for="imageInput" class="btn upload-btn">
-                Upload Foto
-            </label>
-
-            <input type="file" id="imageInput"
-                   accept="image/*" hidden>
-
-            <button id="scanBtn" class="btn scan-button" disabled>
-                Scan Tanaman
-            </button>
-
-            <button id="resetBtn" class="reset-button">
-                Ulangi
-            </button>
+      <div class="step">
+        <span>02</span>
+        <div>
+          <strong>Identify</strong>
+          <p>Let the identification service analyze your image.</p>
         </div>
+      </div>
 
-        <p id="status" class="status">
-            Silakan buka kamera atau upload gambar.
-        </p>
+      <div class="step">
+        <span>03</span>
+        <div>
+          <strong>Discover</strong>
+          <p>See possible species and their scientific names.</p>
+        </div>
+      </div>
 
-        <div id="result" class="result-area" aria-live="polite"></div>
+      <p class="info-note">
+        Results are suggestions, not a guarantee of correct identification.
+      </p>
+    </aside>
+  </div>
 
-    </div>
+  <div id="result" class="result-grid"></div>
 </section>
 
 <section class="catalog-section" id="catalog">
-    <div class="section-heading">
-        <p class="eyebrow">PLANT COLLECTION</p>
-        <h2>Jelajahi Tanaman</h2>
-        <p>Temukan berbagai tanaman yang ada di sekitar kita.</p>
+  <div class="catalog-heading">
+    <div>
+      <span class="eyebrow">02 — THE COLLECTION</span>
+      <h2>Explore Plant Life.</h2>
+      <p>A collection of beautiful and fascinating plants.</p>
     </div>
+    <span class="collection-count" id="plantCount">14 PLANTS</span>
+  </div>
 
-    <div class="catalog-tools">
-        <input type="search" id="searchInput"
-               placeholder="Cari nama tanaman...">
+  <div class="catalog-tools">
+    <input type="search" id="searchInput"
+           placeholder="Search your favourite plant...">
 
-        <select id="categoryFilter">
-            <option value="all">Semua Kategori</option>
-            <option value="hias">Tanaman Hias</option>
-            <option value="buah">Tanaman Buah</option>
-            <option value="obat">Tanaman Obat</option>
-        </select>
-    </div>
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="hias">Ornamental</option>
+      <option value="buah">Fruit</option>
+      <option value="obat">Medicinal</option>
+    </select>
+  </div>
 
-    <div id="plantGrid" class="plant-grid"></div>
+  <div class="plant-grid" id="plantGrid"></div>
+  <p class="catalog-note">
+    Plant photos are loaded from your local assets folder.
+  </p>
 </section>
 
 <section class="about-section" id="about">
-    <p class="eyebrow">ABOUT FLORAVERSE</p>
-    <h2>Kenali, Pelajari, dan Jaga Tanaman</h2>
-    <p>
-        FLORAVERSE merupakan website informasi tanaman
-        yang membantu pengguna mengenali berbagai jenis
-        tanaman melalui katalog dan fitur identifikasi.
-    </p>
+  <span class="eyebrow">03 — OUR PURPOSE</span>
+  <h2>Growing Knowledge,<br><em>Growing Nature.</em></h2>
+  <p>
+    FLORAVERSE is a plant discovery platform created to
+    help people explore plant diversity, identify species,
+    and learn more about the natural world.
+  </p>
 </section>
 
 </main>
 
 <footer>
-    <h2>FLORAVERSE</h2>
-    <p>Explore The World of Plants</p>
-    <p>© 2026 FLORAVERSE</p>
+  <a href="#home" class="brand">✿ FLORAVERSE</a>
+  <p>Explore the world of plants.</p>
+  <span>© 2026 FLORAVERSE</span>
 </footer>
 
 </body>
